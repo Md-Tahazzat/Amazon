@@ -1,55 +1,48 @@
+import { FaBars } from "react-icons/fa";
+import Cart from "../../../components/Navbar/Cart";
+import DeliverCountry from "../../../components/Navbar/DeliverCountry";
 import Logo from "../../../components/Navbar/Logo";
+import Profile from "../../../components/Navbar/Profile";
+import SearchInput from "../../../components/Navbar/SearchInput";
 
 const Navbar = () => {
   return (
-    <nav className="bg-[#232f3e] mx-auto px-6">
+    <nav className="bg-[#232f3e] mx-auto px-2 md:px-6">
       {/* top nav section starts */}
       <div
         id="nav-top"
-        className="flex bg-[#232f3e] py-1 items-center justify-between"
+        className="flex bg-[#232f3e] py-1 items-center justify-between gap-10 md:gap-0"
       >
-        {/* logo section starts */}
         <div className="flex items-center justify-between">
+          <label htmlFor="my-drawer" className="text-white font-bold md:hidden">
+            <FaBars />
+          </label>
           <Logo />
-          <p className="text-white">Deliver to</p>
+          <DeliverCountry />
         </div>
 
-        <div className="w-5/6 text-white flex flex-col-reverse md:flex-row items-center justify-between">
-          {/* search input section starts */}
-          <div className="w-4/6">
-            <input
-              className="w-full"
-              type="text"
-              name="searchInput"
-              id="searchInput"
-              placeholder="Search Amazon"
-            />
-            <label htmlFor="searchInput">Search</label>
+        {/* login, search and profile section starts */}
+        <div className="w-5/6 text-white flex items-start justify-between md:gap-10">
+          <div className="hidden md:block md:w-9/12">
+            <SearchInput />
           </div>
-
-          {/* login and cart section starts */}
-          <div>
-            <div>
-              <p>Sign In option</p>
-            </div>
-            <div>
-              <p>
-                cart and <br /> cart content{" "}
-              </p>
-            </div>
+          <div className="flex items-start justify-between  w-full md:w-3/12">
+            <Profile />
+            <Cart />
           </div>
         </div>
+      </div>
+      <div className="block md:hidden">
+        <SearchInput />
       </div>
 
       {/* bottom nav section starts */}
       <div className="drawer">
+        <label htmlFor="my-drawer" className="text-white font-bold md:hidden">
+          <FaBars />
+        </label>
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
-          {/* Page content here */}
-          <label htmlFor="my-drawer" className="btn btn-primary drawer-button">
-            Open drawer
-          </label>
-        </div>
+        <div className="drawer-content">{/* Page content here */}</div>
         <div className="drawer-side">
           <label htmlFor="my-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">

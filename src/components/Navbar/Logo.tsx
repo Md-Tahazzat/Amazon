@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const Logo = () => {
   return (
-    <Link to="/">
+    <Link to="/" className="hover-border">
       <img
-        className="w-[110px]"
+        className="w-[100px] h-[35px] mt-2"
         src="https://i.ibb.co/F6SxYvG/amazon-PNG11.png"
         alt="Amazon"
       />
