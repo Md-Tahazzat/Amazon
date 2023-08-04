@@ -1,45 +1,42 @@
-import { Link } from "react-router-dom";
+import Logo from "../../../components/Navbar/Logo";
 
 const Navbar = () => {
   return (
     <nav className="bg-[#232f3e] mx-auto px-6">
-      {/* top nav logo section starts */}
+      {/* top nav section starts */}
       <div
         id="nav-top"
         className="flex bg-[#232f3e] py-1 items-center justify-between"
       >
-        <div>
-          <Link to="/">
-            <img
-              className="w-[110px]"
-              src="https://i.ibb.co/F6SxYvG/amazon-PNG11.png"
-              alt="Amazon"
-            />
-          </Link>
+        {/* logo section starts */}
+        <div className="flex items-center justify-between">
+          <Logo />
           <p className="text-white">Deliver to</p>
         </div>
 
-        {/* search input section starts */}
-        <div className="w-4/6">
-          <input
-            className="w-full"
-            type="text"
-            name="searchInput"
-            id="searchInput"
-            placeholder="Search Amazon"
-          />
-          <label htmlFor="searchInput">Search</label>
-        </div>
-
-        {/* login and cart section starts */}
-        <div>
-          <div>
-            <p>Sign In option</p>
+        <div className="w-5/6 text-white flex flex-col-reverse md:flex-row items-center justify-between">
+          {/* search input section starts */}
+          <div className="w-4/6">
+            <input
+              className="w-full"
+              type="text"
+              name="searchInput"
+              id="searchInput"
+              placeholder="Search Amazon"
+            />
+            <label htmlFor="searchInput">Search</label>
           </div>
+
+          {/* login and cart section starts */}
           <div>
-            <p>
-              cart and <br /> cart content{" "}
-            </p>
+            <div>
+              <p>Sign In option</p>
+            </div>
+            <div>
+              <p>
+                cart and <br /> cart content{" "}
+              </p>
+            </div>
           </div>
         </div>
       </div>
