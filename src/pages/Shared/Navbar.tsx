@@ -1,9 +1,10 @@
 import { FaBars } from "react-icons/fa";
-import Cart from "../../../components/Navbar/Cart";
-import DeliverCountry from "../../../components/Navbar/DeliverCountry";
-import Logo from "../../../components/Navbar/Logo";
-import Profile from "../../../components/Navbar/Profile";
-import SearchInput from "../../../components/Navbar/SearchInput";
+import Cart from "../../components/Navbar/Cart";
+import DeliverCountry from "../../components/Navbar/DeliverCountry";
+import Logo from "../../components/Navbar/Logo";
+import Profile from "../../components/Navbar/Profile";
+import ReturnsAndOrders from "../../components/Navbar/ReturnsAndOrders";
+import SearchInput from "../../components/Navbar/SearchInput";
 
 const Navbar = () => {
   return (
@@ -11,34 +12,38 @@ const Navbar = () => {
       {/* top nav section starts */}
       <div
         id="nav-top"
-        className="flex bg-[#232f3e] py-1 items-center justify-between gap-10 md:gap-0"
+        className="flex bg-[#232f3e] py-1 items-center justify-between  md:gap-0"
       >
         <div className="flex items-center justify-between">
-          <label htmlFor="my-drawer" className="text-white font-bold md:hidden">
+          <label
+            htmlFor="my-drawer"
+            className="text-white text-2xl mr-1 md:hidden"
+          >
             <FaBars />
           </label>
           <Logo />
           <DeliverCountry />
         </div>
 
-        {/* login, search and profile section starts */}
-        <div className="w-5/6 text-white flex items-start justify-between md:gap-10">
-          <div className="hidden md:block md:w-9/12">
-            <SearchInput />
-          </div>
-          <div className="flex items-start justify-between  w-full md:w-3/12">
-            <Profile />
-            <Cart />
-          </div>
+        {/* search Input */}
+        <div className="hidden lg:block md:w-7/12">
+          <SearchInput />
+        </div>
+
+        {/* profile and cart section starts */}
+        <div className="flex items-start justify-between lg:gap-3">
+          <Profile />
+          <ReturnsAndOrders />
+          <Cart />
         </div>
       </div>
-      <div className="block md:hidden">
+      <div className="block md:hidden -mt-1">
         <SearchInput />
       </div>
 
       {/* bottom nav section starts */}
       <div className="drawer">
-        <label htmlFor="my-drawer" className="text-white font-bold md:hidden">
+        <label htmlFor="my-drawer" className="text-white hidden  font-bold">
           <FaBars />
         </label>
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />

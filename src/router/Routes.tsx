@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../layoutes/Root";
+import Login from "../pages/Shared/Login";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <p>Defaut login</p>,
+        element: <Login></Login>,
       },
       {
         path: "/register",
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         element: <p>Defaut dashboard</p>,
       },
     ],
+  },
+  {
+    path: "/without-nav",
+    element: <p>Without nav bar </p>,
   },
 ]);
 export default router;
