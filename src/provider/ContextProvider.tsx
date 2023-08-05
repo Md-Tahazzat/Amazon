@@ -1,33 +1,35 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
+import {
+  ContextProviderProps,
+  MenuState,
+  ShopContextData,
+} from "../tsInterfaces&types/ContextProvider";
+import { menuReducer } from "../utilitesFn/ShopContextProviderFn";
 
-// interface for react children,
-interface ContextProviderProps {
-  children: ReactNode;
-}
-
-// interface for context data.
-interface ShopContextData {
-  isMenuOpen: boolean;
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-// initial context data
-const initialContextData: ShopContextData = {
+// initial menuState data of useReducer hook of hambergerMenu
+const initialMenuState: MenuState = {
   isMenuOpen: false,
-  setIsMenuOpen: () => {},
+  isSubMenuOpen: false,
+  subMenuIndex: 0,
+};
+
+// initial shopContext data
+const initialContextData: ShopContextData = {
+  menuState: initialMenuState,
+  menuDispatch: () => {},
 };
 
 // create amazon shop context.
 const ShopContext = createContext<ShopContextData>(initialContextData);
 
 const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
-  // state for hamburger menu open close
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  // hambergurMenu control useReducer
+  const [menuState, menuDispatch] = useReducer(menuReducer, initialMenuState);
 
   // shop context data
   const shopContextData: ShopContextData = {
-    isMenuOpen,
-    setIsMenuOpen,
+    menuState,
+    menuDispatch,
   };
   return (
     <ShopContext.Provider value={shopContextData}>

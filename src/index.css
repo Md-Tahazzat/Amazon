@@ -11,3 +11,7 @@
 .hover-border {
   @apply border border-[#232f3e] hover:border-white px-1 rounded-sm;
 }
+
+.translate-inherit {
+  @apply -translate-x-full;
+}
