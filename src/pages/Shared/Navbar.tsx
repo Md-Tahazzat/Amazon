@@ -10,9 +10,6 @@ import { useShopContext } from "../../provider/ContextProvider";
 
 const Navbar = () => {
   const { menuDispatch } = useShopContext();
-  const handleMenuOpen = (): void => {
-    menuDispatch({ type: "OPEN_MENU", subMenuIndex: 0 });
-  };
   return (
     <nav className="bg-[#232f3e] mx-auto px-2 md:px-6">
       {/* top nav section starts */}
@@ -22,9 +19,8 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between">
           <label
-            onClick={handleMenuOpen}
-            htmlFor="my-drawer"
-            className="text-white text-2xl mr-1 "
+            onClick={() => menuDispatch({ target: "MENU", actionType: "OPEN" })}
+            className="text-white text-2xl mr-1 lg:hidden"
           >
             <FaBars />
           </label>
@@ -49,7 +45,14 @@ const Navbar = () => {
       </div>
 
       {/* bottom nav section starts */}
-      <div></div>
+      <div className="w-full bg-[#232f3e] pt-1 pb-2">
+        <label
+          onClick={() => menuDispatch({ target: "MENU", actionType: "OPEN" })}
+          className="text-white text-2xl mr-1 hidden lg:block"
+        >
+          <FaBars />
+        </label>
+      </div>
       <HambergerMenu />
     </nav>
   );

@@ -12,6 +12,11 @@
   @apply border border-[#232f3e] hover:border-white px-1 rounded-sm;
 }
 
-.translate-inherit {
+/* hamberger-menu styles */
+
+.close-menu {
   @apply -translate-x-full;
+}
+.open-menu {
+  @apply translate-x-0;
 }

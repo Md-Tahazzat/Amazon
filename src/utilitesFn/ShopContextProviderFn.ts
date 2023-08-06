@@ -1,36 +1,30 @@
-import { MenuState, menuAction } from "../tsInterfaces&types/ContextProvider";
+import { MenuAction, MenuState } from "../tsInterfaces&types/ContextProvider";
 
 // menuReducer function for useReducer hook to controll hamberger menu state.
 export const menuReducer = (
   menuState: MenuState,
-  action: menuAction
+  menuAction: MenuAction
 ): MenuState => {
-  switch (action.type) {
-    case "HIDE_MENU":
+  switch (menuAction.target) {
+    case "MENU":
       return {
         ...menuState,
-        isMenuOpen: false,
-        subMenuIndex: action.subMenuIndex,
+        isMenuOpen: menuAction.actionType === "OPEN" ? true : false,
       };
-    case "OPEN_MENU":
-      return {
-        ...menuState,
-        isMenuOpen: true,
-        subMenuIndex: action.subMenuIndex,
-      };
-    case "OPEN_SUBMENU":
-      return {
-        ...menuState,
-        isSubMenuOpen: true,
-        subMenuIndex: action.subMenuIndex,
-      };
-    case "HIDE_SUBMENU":
-      return {
-        ...menuState,
-        isSubMenuOpen: false,
-        subMenuIndex: action.subMenuIndex,
-      };
-
+    case "SUBMENU":
+      if (menuAction.actionType === "OPEN" && menuAction.subMenuIndex) {
+        return {
+          ...menuState,
+          isSubMenuOpen: true,
+          subMenuIndex: menuAction.subMenuIndex,
+        };
+      } else {
+        return {
+          ...menuState,
+          isSubMenuOpen: false,
+          subMenuIndex: 0,
+        };
+      }
     default:
       return menuState;
   }

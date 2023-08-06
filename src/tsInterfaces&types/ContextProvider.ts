@@ -12,13 +12,14 @@ export interface MenuState {
 }
 
 // interface for action parameter of menuReducer function
-export type menuAction = {
-  type: "HIDE_SUBMENU" | "OPEN_SUBMENU" | "OPEN_MENU" | "HIDE_MENU";
-  subMenuIndex: number;
-};
+export interface MenuAction {
+  target: "MENU" | "SUBMENU" | "ALL";
+  actionType: "CLOSE" | "OPEN";
+  subMenuIndex?: number;
+}
 
 // interface for shopContext data.
 export interface ShopContextData {
   menuState: MenuState;
-  menuDispatch: React.Dispatch<menuAction>;
+  menuDispatch: React.Dispatch<MenuAction>;
 }
