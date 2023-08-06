@@ -9,7 +9,7 @@
 
 /* navbar element hover style */
 .hover-border {
-  @apply border border-[#232f3e] hover:border-white px-1 rounded-sm;
+  @apply border border-transparent hover:border-white px-1 rounded-sm;
 }
 
 /* hamberger-menu styles */

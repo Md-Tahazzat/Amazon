@@ -11,11 +11,11 @@ import { useShopContext } from "../../provider/ContextProvider";
 const Navbar = () => {
   const { menuDispatch } = useShopContext();
   return (
-    <nav className="bg-[#232f3e] mx-auto px-2 md:px-6">
+    <nav className=" mx-auto bg-[#131921]">
       {/* top nav section starts */}
       <div
         id="nav-top"
-        className="flex bg-[#232f3e] py-1 items-center justify-between  md:gap-0"
+        className="flex py-1 items-center justify-between md:px-6 md:gap-0"
       >
         <div className="flex items-center justify-between">
           <label
@@ -45,7 +45,7 @@ const Navbar = () => {
       </div>
 
       {/* bottom nav section starts */}
-      <div className="w-full bg-[#232f3e] pt-1 pb-2">
+      <div className="w-full md:px-6 bg-[#232F3E] py-1.5">
         <label
           onClick={() => menuDispatch({ target: "MENU", actionType: "OPEN" })}
           className="text-white text-2xl mr-1 hidden lg:block"

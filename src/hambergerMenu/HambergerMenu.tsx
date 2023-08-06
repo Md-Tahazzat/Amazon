@@ -1,46 +1,33 @@
+import { FaAngleRight } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
+import { useQuery } from "react-query";
+import instance from "../hooks/useAxiosInstance";
 import { useShopContext } from "../provider/ContextProvider";
+import { Category } from "../tsInterfaces&types/HambergerMenu";
 import SubMenu from "./SubMenu";
 
 const HambergerMenu = () => {
   const { menuState, menuDispatch } = useShopContext();
+
+  // hambergerMenu handler function.
+  const handleMenuToggle = (
+    e: React.MouseEvent,
+    target: "SUBMENU" | "MENU",
+    actionType: "OPEN" | "CLOSE",
+    subMenuIndex: number
+  ) => {
+    // stop event bubbling
+    e.stopPropagation();
+    menuDispatch({ target, actionType, subMenuIndex });
+  };
+
   // TODO: navLinks have to take from the server side.
-  const NavLinks = [
-    {
-      label: "Electronics",
-      subMenu: [
-        {
-          label: "Camera",
-          href: "/camera",
-        },
-        {
-          label: "Desktop",
-          href: "/desktop",
-        },
-        {
-          label: "Phone",
-          href: "/phone",
-        },
-      ],
-    },
-    {
-      label: "Kitchen",
-      subMenu: [
-        {
-          label: "Spoons",
-          href: "/spoons",
-        },
-        {
-          label: "Mugs",
-          href: "/mug",
-        },
-        {
-          label: "Blenders",
-          href: "/blengers",
-        },
-      ],
-    },
-  ];
+  const { data } = useQuery("categories", async () => {
+    const response: Category[] = await instance.get("/categories");
+    return response;
+  });
+
+  const navLinks: Category[] = data || [];
   return (
     <div className="drawer">
       <input
@@ -49,34 +36,41 @@ const HambergerMenu = () => {
         checked={menuState.isMenuOpen}
         className="drawer-toggle"
       />
-      <div className="drawer-side">
+      <div className="drawer-side overflow-hidden">
         <label htmlFor="menu-drawer" className="drawer-overlay"></label>
-        <ul className="-translate-x-full p-4 w-9/12 md:w-3/6 bg-white relative lg:w-96 h-full text-base-content">
-          {/* Sidebar content here */}
+        <div className="-translate-x-full w-9/12 md:w-3/6 h-full bg-white relative lg:w-96 text-base-content">
+          {/* Navlink list here */}
+          <p className="py-2.5 pl-10 text-white font-semibold bg-[#232F3E] block text-2xl">
+            Hello, sign in
+          </p>
+          <p className="pl-10 text-lg font-bold py-2.5 border-b border-b-slate-200">
+            Shop By Categories
+          </p>
 
-          {NavLinks.map((link, index) => {
-            return (
-              <li key={index} className="">
-                <label
-                  onClick={() =>
-                    menuDispatch({
-                      target: "SUBMENU",
-                      actionType: "OPEN",
-                      subMenuIndex: index + 1,
-                    })
-                  }
-                >
-                  {link.label}
-                </label>
-                <SubMenu subMenuItems={link.subMenu} index={index + 1} />
-              </li>
-            );
-          })}
-
-          {/* MENU list 2 starts */}
-          <li>
-            <a>Sidebar Item 2</a>
-          </li>
+          {/* navLink list starts */}
+          <ul className="">
+            {navLinks &&
+              navLinks.map((link, index) => {
+                return (
+                  <li
+                    onClick={(event) =>
+                      handleMenuToggle(event, "SUBMENU", "OPEN", index + 1)
+                    }
+                    key={index}
+                    className="pl-10 block hover:bg-slate-200 font-medium duration-150 py-2.5"
+                  >
+                    <label className="flex font-thin items-center justify-between pr-5">
+                      <span className="font-medium text-base">{link.name}</span>{" "}
+                      <FaAngleRight />
+                    </label>
+                    <SubMenu
+                      subcategories={link.subcategories}
+                      index={index + 1}
+                    />
+                  </li>
+                );
+              })}
+          </ul>
 
           {/* MENU close button */}
           <label
@@ -89,7 +83,7 @@ const HambergerMenu = () => {
           >
             <FaXmark />
           </label>
-        </ul>
+        </div>
       </div>
     </div>
   );
