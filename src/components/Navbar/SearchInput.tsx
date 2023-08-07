@@ -2,7 +2,7 @@ import { FaSistrix } from "react-icons/fa";
 
 const SearchInput = () => {
   return (
-    <div className="w-full flex items-center">
+    <div className="w-full px-2 md:px-4 flex items-center">
       <input
         className="w-full py-1 lg:py-2 text-black my-1 rounded-s-md px-3 lg:px-4 border-2 border-r-0 border-[#232f3e] focus:outline-none  font-semibold focus:border-orange-500"
         type="text"

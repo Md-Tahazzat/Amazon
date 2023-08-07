@@ -5,10 +5,10 @@ export default function Root() {
   return (
     <>
       <Navbar />
-      <div className="max-w-[100rem] mx-auto px-4 md:px-8 lg:px-10">
+      <div className="max-w-[100rem] mx-auto px-2 md:px-4 lg:px-10">
         <Outlet />
       </div>
-      <footer>some footer el</footer>
+      <footer className="px-2 md:px-4 lg:px-10">some footer el</footer>
     </>
   );
 }

@@ -1,17 +1,14 @@
-import { FaArrowLeftLong } from "react-icons/fa6";
+import queryString from "query-string";
+import { IoArrowUndoOutline } from "react-icons/io5";
+import { NavLink } from "react-router-dom";
 import { useShopContext } from "../provider/ContextProvider";
+import { SubMenuProps } from "../tsInterfaces&types/HambergerMenu";
 
-// interfaces for Submenu
-interface SubMenuItems {
-  label: string;
-  href: string;
-}
-interface SubMenuProps {
-  subcategories: SubMenuItems[];
-  index: number;
-}
-
-const SubMenu: React.FC<SubMenuProps> = ({ subcategories, index }) => {
+const SubMenu: React.FC<SubMenuProps> = ({
+  categoryHref,
+  subcategories,
+  index,
+}) => {
   const { menuState, menuDispatch } = useShopContext();
 
   // hambergerMenu handler function.
@@ -26,7 +23,9 @@ const SubMenu: React.FC<SubMenuProps> = ({ subcategories, index }) => {
     menuDispatch({ target, actionType, subMenuIndex });
   };
 
-  console.log(menuState);
+  // query string functionality for active style
+  const parsedUrl = queryString.parse(location.search);
+
   return (
     <ul
       data-index="1"
@@ -36,20 +35,30 @@ const SubMenu: React.FC<SubMenuProps> = ({ subcategories, index }) => {
           : "-translate-x-full"
       }`}
     >
-      <li
-        onClick={(event) => handleMenuToggle(event, "SUBMENU", "CLOSE", 0)}
-        className="pl-10 cursor-pointer flex items-center py-[12px] border-b border-slate-300"
-      >
-        <FaArrowLeftLong /> <span className="ml-2">MAIN MENU</span>
+      <li>
+        <button
+          onClick={(event) => handleMenuToggle(event, "SUBMENU", "CLOSE", 0)}
+          className="pl-10 w-full text-xl cursor-pointer flex items-center border-b border-slate-300"
+        >
+          <IoArrowUndoOutline />
+          <span className="ml-2 text-lg py-2.5">MAIN MENU</span>
+        </button>
       </li>
       {subcategories.map((item, index) => {
         return (
           <li
-            className="pl-10 block hover:bg-slate-200 font-medium duration-150 py-2.5"
+            className="pl-7 block font-medium duration-150 hover:bg-slate-200"
             onClick={(event) => handleMenuToggle(event, "MENU", "CLOSE")}
             key={index}
           >
-            {item.label}
+            <NavLink
+              className={`block py-2.5 pl-3 ${
+                parsedUrl.subcategory === item.href ? "activeLink" : ""
+              }`}
+              to={`/${categoryHref}?subcategory=${item.href}`}
+            >
+              {item.label}
+            </NavLink>
           </li>
         );
       })}

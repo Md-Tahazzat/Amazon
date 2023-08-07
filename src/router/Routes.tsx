@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../layoutes/Root";
-import Login from "../pages/Shared/Login";
 
 const router = createBrowserRouter([
   {
@@ -11,17 +10,42 @@ const router = createBrowserRouter([
         path: "/",
         element: <p>Defaut home</p>,
       },
+
       {
-        path: "/login",
-        element: <Login></Login>,
+        path: "/computer",
+        element: <p>From Computer</p>,
       },
       {
-        path: "/register",
-        element: <p>Defaut register</p>,
+        path: "/electronics",
+        element: <p>From Electronics</p>,
       },
       {
-        path: "/dashboard",
-        element: <p>Defaut dashboard</p>,
+        path: "/home-and-kitchen",
+        element: <p>From Home and kitchen</p>,
+      },
+      {
+        path: "/luggage",
+        element: <p>From Luggage</p>,
+      },
+      {
+        path: "/mens-fashion",
+        element: <p>From Men's fashion</p>,
+      },
+      {
+        path: "/personal-care",
+        element: <p>From personal care</p>,
+      },
+      {
+        path: "/software",
+        element: <p>From software</p>,
+      },
+      {
+        path: "/toys-and-games",
+        element: <p>From Toys and games</p>,
+      },
+      {
+        path: "/womens-fashion",
+        element: <p>From women's fashion</p>,
       },
     ],
   },

@@ -15,7 +15,7 @@ const Navbar = () => {
       {/* top nav section starts */}
       <div
         id="nav-top"
-        className="flex py-1 items-center justify-between md:px-6 md:gap-0"
+        className="flex py-1 px-2 items-center justify-between md:px-4 lg:px-6 md:gap-0"
       >
         <div className="flex items-center justify-between">
           <label
@@ -29,7 +29,7 @@ const Navbar = () => {
         </div>
 
         {/* search Input */}
-        <div className="hidden lg:block md:w-7/12">
+        <div className="hidden md:block md:w-7/12">
           <SearchInput />
         </div>
 
@@ -45,7 +45,7 @@ const Navbar = () => {
       </div>
 
       {/* bottom nav section starts */}
-      <div className="w-full md:px-6 bg-[#232F3E] py-1.5">
+      <div className="w-full px-2 md:px-4 lg:px-6 bg-[#232F3E] py-1.5">
         <label
           onClick={() => menuDispatch({ target: "MENU", actionType: "OPEN" })}
           className="text-white text-2xl mr-1 hidden lg:block"

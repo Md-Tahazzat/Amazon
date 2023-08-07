@@ -36,9 +36,9 @@ const HambergerMenu = () => {
         checked={menuState.isMenuOpen}
         className="drawer-toggle"
       />
-      <div className="drawer-side overflow-hidden">
+      <div className="drawer-side -left-[1px] overflow-hidden">
         <label htmlFor="menu-drawer" className="drawer-overlay"></label>
-        <div className="-translate-x-full w-9/12 md:w-3/6 h-full bg-white relative lg:w-96 text-base-content">
+        <div className="-translate-x-full  w-9/12 md:w-3/6 h-full bg-white relative lg:w-96 text-base-content">
           {/* Navlink list here */}
           <p className="py-2.5 pl-10 text-white font-semibold bg-[#232F3E] block text-2xl">
             Hello, sign in
@@ -64,6 +64,7 @@ const HambergerMenu = () => {
                       <FaAngleRight />
                     </label>
                     <SubMenu
+                      categoryHref={link.href}
                       subcategories={link.subcategories}
                       index={index + 1}
                     />
