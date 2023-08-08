@@ -31,3 +31,25 @@
   left: -8px;
   @apply border-2 block w-3 h-3 border-slate-300 bg-orange-500 rounded-full;
 }
+
+/* bottom links style in the navbar */
+#nav-end {
+  overflow-x: auto;
+}
+#nav-end::-webkit-scrollbar {
+  width: 0;
+}
+
+/* form input box style */
+
+.input-box label {
+  @apply mb-0.5 block;
+}
+
+.input-box input {
+  @apply px-2   border text-lg mb-3 border-slate-400 focus:outline-none w-full rounded-md;
+}
+
+.input-btn {
+  @apply w-full mt-2 py-2 bg-orange-500 hover:bg-orange-600 duration-200 rounded-md text-lg font-semibold text-white;
+}

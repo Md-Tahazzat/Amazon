@@ -45,13 +45,25 @@ const Navbar = () => {
       </div>
 
       {/* bottom nav section starts */}
-      <div className="w-full px-2 md:px-4 lg:px-6 bg-[#232F3E] py-1.5">
+      <div className="w-full overflow-x-scroll flex gap-4 px-2 md:px-4 lg:px-6 bg-[#232F3E] py-1.5">
         <label
           onClick={() => menuDispatch({ target: "MENU", actionType: "OPEN" })}
-          className="text-white text-2xl mr-1 hidden lg:block"
+          className="text-white text-xl hover-border hidden lg:flex items-center"
         >
           <FaBars />
+          <span className="text-base ml-1">All</span>
         </label>
+        <ul className="flex w-full items-center gap-2 min-w-screen text-white">
+          <li className="hover-border bg-slate-500">Today's Deals</li>
+          <li className="hover-border min-w-[100px] bg-slate-500">
+            Customer Service
+          </li>
+          <li className="hover-border min-w-[100px] bg-slate-500">Registry</li>
+          <li className="hover-border min-w-[100px] bg-slate-500">
+            Gift Cards
+          </li>
+          <li className="hover-border min-w-[100px] bg-slate-500">Sell</li>
+        </ul>
       </div>
       <HambergerMenu />
     </nav>

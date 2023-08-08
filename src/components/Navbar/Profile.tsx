@@ -1,7 +1,8 @@
 import { FaAngleRight, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Profile = () => {
   return (
-    <div className="text-white hover-border md:py-1 lg:mt-1">
+    <Link to="/sign-in" className="text-white hover-border md:py-1 lg:mt-1">
       {/* for medium and large device device profile */}
       <span className="hidden lg:flex flex-col items-left justify-center ">
         <span className="text-slate-100 text-[13px] -mb-[6px]">
@@ -16,7 +17,7 @@ const Profile = () => {
         <FaAngleRight className="text-[10px] mt-1 " />{" "}
         <FaUser className="text-2xl" />
       </span>
-    </div>
+    </Link>
   );
 };
 

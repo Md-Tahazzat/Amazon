@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../layoutes/Root";
+import SignIn from "../pages/UserAccount/SignIn";
 
 const router = createBrowserRouter([
   {
@@ -50,8 +51,8 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/without-nav",
-    element: <p>Without nav bar </p>,
+    path: "/sign-in",
+    element: <SignIn />,
   },
 ]);
 export default router;
