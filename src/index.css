@@ -42,14 +42,26 @@
 
 /* form input box style */
 
-.input-box label {
+.input-box {
+  @apply relative;
+}
+
+.input-label {
   @apply mb-0.5 block;
 }
 
-.input-box input {
-  @apply px-2   border text-lg mb-3 border-slate-400 focus:outline-none w-full rounded-md;
+.input-field {
+  @apply px-2 py-1  border text-lg mb-3 border-slate-400 focus:outline-none w-full rounded-md;
+}
+
+.show-password-icon {
+  @apply absolute bottom-[23px] right-3;
 }
 
 .input-btn {
-  @apply w-full mt-2 py-2 bg-orange-500 hover:bg-orange-600 duration-200 rounded-md text-lg font-semibold text-white;
+  @apply w-full mt-2 py-2 rounded-md text-lg font-semibold text-white;
+}
+
+.gradient-border {
+  color: #ffffff1a;
 }

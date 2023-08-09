@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import LogoBlack from "../../components/UserAccount/LogoBlack";
-import SignInForm from "../../components/UserAccount/SignIn/SignInForm";
+import SignUpForm from "../../components/UserAccount/SignUp/SignUpForm";
 import UserAccountFooter from "../../components/UserAccount/UserAccountFooter";
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <div className="min-h-screen flex relative flex-col px-4 md:px-0 items-center justify-start w-full bg-white">
       <div className="max-w-[400px] w-full">
@@ -16,17 +16,17 @@ const SignIn = () => {
         {/* form section */}
         <section className="border  p-3 md:p-4 rounded-lg border-slate-300">
           <h1 className="text-2xl text-center mb-2 md:mb-3 md:text-3xl font-semibold">
-            Sign in
+            Sign up
           </h1>
-          <SignInForm />
+          <SignUpForm />
         </section>
 
-        <div className="divider my-5">New to Amazon?</div>
+        <div className="divider my-5">Already have an account?</div>
         <Link
-          to="/sign-up"
+          to="/sign-in"
           className="text-center block hover:bg-blue-50 rounded-md duration-200 py-2 border"
         >
-          Create your Amazon account
+          Sign in your acount
         </Link>
 
         {/* user Account footer */}
@@ -42,4 +42,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
