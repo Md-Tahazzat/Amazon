@@ -5,13 +5,10 @@ import UserAccountFooter from "../../components/UserAccount/UserAccountFooter";
 
 const SignUp = () => {
   return (
-    <div className="min-h-screen flex relative flex-col px-4 md:px-0 items-center justify-start w-full bg-white">
+    <div className="min-h-screen flex flex-col px-4 md:px-0 items-center justify-start w-full bg-white">
       <div className="max-w-[400px] w-full">
         {/* amazon logo and Home link */}
         <LogoBlack />
-
-        {/* error details section */}
-        {/* <ErrorMessage /> */}
 
         {/* form section */}
         <section className="border  p-3 md:p-4 rounded-lg border-slate-300">
@@ -32,12 +29,6 @@ const SignUp = () => {
         {/* user Account footer */}
         <UserAccountFooter />
       </div>
-
-      <img
-        src="https://i.ibb.co/343Z5DM/corner-fold-1.png"
-        className="absolute bottom-0 w-20 md:w-[150px] lg:w-[250px] right-0"
-        alt=""
-      />
     </div>
   );
 };

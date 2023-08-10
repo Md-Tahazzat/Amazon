@@ -1,6 +1,8 @@
 import {
   SignInFormAction,
   SignInFormState,
+  SignUpFormAction,
+  SignUpFormState,
 } from "../tsInterfaces&types/UserAccount";
 
 // function for signInFormReducer in signInForm
@@ -8,23 +10,49 @@ export const signInFormReducer = (
   state: SignInFormState,
   action: SignInFormAction
 ): SignInFormState => {
-  switch (action.actionType.target) {
-    case "EMAIL_ERROR":
-      return {
-        ...state,
-        emailError: action.actionType.value,
-      };
-    case "PASSWORD_ERROR":
-      return {
-        ...state,
-        passwordError: action.actionType.value,
-      };
-    case "SHOW_PASSWORD":
-      return {
-        ...state,
-        showPassword: action.actionType.value,
-      };
-    default:
-      return state;
-  }
+  return {
+    firebaseError: action.firebaseError
+      ? action.firebaseError
+      : state.firebaseError,
+    showPassword:
+      action.showPassword === undefined
+        ? state.showPassword
+        : action.showPassword
+        ? true
+        : false,
+    loading:
+      action.loading === undefined
+        ? state.loading
+        : action.loading
+        ? true
+        : false,
+  };
+};
+
+// function for signUpFormReducer in signUpForm
+export const signUpFormReducer = (
+  state: SignUpFormState,
+  action: SignUpFormAction
+): SignUpFormState => {
+  return {
+    firebaseError: action.firebaseError ? action.firebaseError : "",
+    loading:
+      action.loading === undefined
+        ? state.loading
+        : action.loading
+        ? true
+        : false,
+    showPassword:
+      action.showPassword === undefined
+        ? state.showPassword
+        : action.showPassword
+        ? true
+        : false,
+    agreeToTermsAndConditions:
+      action.agreeToTermsAndConditions === undefined
+        ? state.agreeToTermsAndConditions
+        : action.agreeToTermsAndConditions
+        ? true
+        : false,
+  };
 };

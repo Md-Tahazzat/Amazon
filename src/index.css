@@ -51,7 +51,7 @@
 }
 
 .input-field {
-  @apply px-2 py-1  border text-lg mb-3 border-slate-400 focus:outline-none w-full rounded-md;
+  @apply px-2 py-1  border text-lg mb-3 focus:outline-none w-full rounded-md;
 }
 
 .show-password-icon {
@@ -59,7 +59,7 @@
 }
 
 .input-btn {
-  @apply w-full mt-2 py-2 rounded-md text-lg font-semibold text-white;
+  @apply w-full mt-2 py-2 rounded-md text-lg font-semibold text-white bg-orange-500;
 }
 
 .gradient-border {

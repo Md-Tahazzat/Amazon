@@ -1,5 +1,4 @@
 // SignUpFrom
-
 // type for SignUp FormData
 export type SignUpFormData = {
   name: string;
@@ -9,10 +8,22 @@ export type SignUpFormData = {
 };
 
 // interfaces for signUpFromState for SignUpFrom reducer
-// export interface SignUpFormState
+export interface SignUpFormState {
+  firebaseError: string;
+  agreeToTermsAndConditions: boolean;
+  loading: boolean;
+  showPassword: boolean;
+}
+
+// interface for action of SignUpFromReducer function.
+export interface SignUpFormAction {
+  firebaseError?: string;
+  agreeToTermsAndConditions?: boolean;
+  loading?: boolean;
+  showPassword?: boolean;
+}
 
 // SignInFrom
-
 // type for Signin FormData
 export type SignInFormData = {
   email: string;
@@ -21,20 +32,19 @@ export type SignInFormData = {
 
 // interfaces for signInFromState for SignInFrom reducer
 export interface SignInFormState {
-  emailError: string;
-  passwordError: string;
+  firebaseError: string;
   showPassword: boolean;
+  loading: boolean;
 }
 
 // interface for action of SignInFromReducer function.
 export interface SignInFormAction {
-  actionType:
-    | {
-        target: "PASSWORD_ERROR" | "EMAIL_ERROR";
-        value: string;
-      }
-    | {
-        target: "SHOW_PASSWORD";
-        value: boolean;
-      };
+  firebaseError?: string;
+  showPassword?: boolean;
+  loading?: boolean;
+}
+
+// forgetPasswordModal inerface
+export interface ForgetPasswordModalProps {
+  email: string;
 }
