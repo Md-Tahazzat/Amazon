@@ -17,15 +17,8 @@ export const signInFormReducer = (
     showPassword:
       action.showPassword === undefined
         ? state.showPassword
-        : action.showPassword
-        ? true
-        : false,
-    loading:
-      action.loading === undefined
-        ? state.loading
-        : action.loading
-        ? true
-        : false,
+        : action.showPassword,
+    loading: action.loading === undefined ? state.loading : action.loading,
   };
 };
 
@@ -36,23 +29,14 @@ export const signUpFormReducer = (
 ): SignUpFormState => {
   return {
     firebaseError: action.firebaseError ? action.firebaseError : "",
-    loading:
-      action.loading === undefined
-        ? state.loading
-        : action.loading
-        ? true
-        : false,
+    loading: action.loading === undefined ? state.loading : action.loading,
     showPassword:
       action.showPassword === undefined
         ? state.showPassword
-        : action.showPassword
-        ? true
-        : false,
+        : action.showPassword,
     agreeToTermsAndConditions:
       action.agreeToTermsAndConditions === undefined
         ? state.agreeToTermsAndConditions
-        : action.agreeToTermsAndConditions
-        ? true
-        : false,
+        : action.agreeToTermsAndConditions,
   };
 };

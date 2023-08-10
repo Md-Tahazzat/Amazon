@@ -1,8 +1,10 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useReducer } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { ImSpinner9 } from "react-icons/im";
+import { useNavigate } from "react-router-dom";
 import auth from "../../../firebase/firebase.config";
 import {
   SignInFormData,
@@ -18,6 +20,7 @@ const signInFormInitialState: SignInFormState = {
 };
 
 const SignInForm = () => {
+  const navigate = useNavigate();
   // reducer hook to manage error & showPasswordStage
   const [{ showPassword, loading, firebaseError }, signInFormDispatch] =
     useReducer(signInFormReducer, signInFormInitialState);
@@ -37,10 +40,13 @@ const SignInForm = () => {
 
     // firebase signIn functionality
     signInWithEmailAndPassword(auth, data.email, data.password)
-      .then((user) => {
-        signInFormDispatch({ loading: false });
-        console.log(user);
-        reset();
+      .then((result) => {
+        if (result.user) {
+          toast.success("Sign in successfull");
+          signInFormDispatch({ loading: false });
+          reset();
+          navigate("/", { replace: true });
+        }
       })
       .catch((err) => {
         const errorMessage = err.message?.split("/")[1].slice(0, -2);
@@ -155,7 +161,7 @@ const SignInForm = () => {
       </form>
 
       {/* forgot password modal */}
-      <ForgotPasswordModal email={"some Email"} />
+      <ForgotPasswordModal />
     </>
   );
 };

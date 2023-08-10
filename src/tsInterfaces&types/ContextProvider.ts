@@ -23,3 +23,22 @@ export interface ShopContextData {
   menuState: MenuState;
   menuDispatch: React.Dispatch<MenuAction>;
 }
+
+// interface for userDetails
+export interface User {
+  photoUrl?: string;
+  email?: string;
+  displayName: string;
+}
+// interface for userInfoState of useReducer hook
+export interface UserInfoState {
+  loading: boolean;
+  user: User;
+}
+
+// interface for action parameter of userInfoReducer function.
+export interface UserInfoAction {
+  target: "LOADING" | "USER";
+  loading?: boolean;
+  user?: User;
+}

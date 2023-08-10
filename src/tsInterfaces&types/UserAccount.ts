@@ -43,8 +43,3 @@ export interface SignInFormAction {
   showPassword?: boolean;
   loading?: boolean;
 }
-
-// forgetPasswordModal inerface
-export interface ForgetPasswordModalProps {
-  email: string;
-}

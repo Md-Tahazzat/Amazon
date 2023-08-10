@@ -1,4 +1,9 @@
-import { MenuAction, MenuState } from "../tsInterfaces&types/ContextProvider";
+import {
+  MenuAction,
+  MenuState,
+  UserInfoAction,
+  UserInfoState,
+} from "../tsInterfaces&types/ContextProvider";
 
 // menuReducer function for useReducer hook to controll hamberger menu state.
 export const menuReducer = (
@@ -27,5 +32,27 @@ export const menuReducer = (
       }
     default:
       return menuState;
+  }
+};
+
+// userInfoReducer of useReducer hook to control useInformation.
+export const userInfoReducer = (
+  state: UserInfoState,
+  action: UserInfoAction
+): UserInfoState => {
+  switch (action.target) {
+    case "LOADING":
+      return {
+        ...state,
+        loading: action.loading === undefined ? state.loading : action.loading,
+      };
+    case "USER":
+      return {
+        ...state,
+        user: action.user === undefined ? state.user : action.user,
+      };
+
+    default:
+      return state;
   }
 };
