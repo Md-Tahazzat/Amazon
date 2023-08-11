@@ -29,7 +29,7 @@ const HambergerMenu = () => {
 
   const navLinks: Category[] = data || [];
   return (
-    <div className="drawer">
+    <div className="drawer z-50">
       <input
         id="menu-drawer"
         onChange={() => {}}

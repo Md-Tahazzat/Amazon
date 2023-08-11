@@ -4,6 +4,13 @@ export interface ContextProviderProps {
   children: ReactNode;
 }
 
+// interface for user information
+export interface User {
+  displayName: string | null;
+  email: string | null;
+  photoURL: string | null;
+}
+
 //interface for menuState value of useReducer hook to control hambergerMenu.
 export interface MenuState {
   subMenuIndex: number;
@@ -22,25 +29,8 @@ export interface MenuAction {
 export interface ShopContextData {
   menuState: MenuState;
   menuDispatch: React.Dispatch<MenuAction>;
-  userInfoState: UserInfoState;
-  userInfoDispatch: React.Dispatch<UserInfoAction>;
-}
-
-// interface for userDetails
-export interface User {
-  photoUrl?: string | null;
-  email?: string | null;
-  displayName?: string | null;
-}
-// interface for userInfoState of useReducer hook
-export interface UserInfoState {
-  loading: boolean;
   user: User;
-}
-
-// interface for action parameter of userInfoReducer function.
-export interface UserInfoAction {
-  target: "LOADING" | "USER";
-  loading?: boolean;
-  user?: User;
+  setUser: React.Dispatch<User>;
+  loading: boolean;
+  setLoading: React.Dispatch<boolean>;
 }

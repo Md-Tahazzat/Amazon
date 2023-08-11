@@ -4,15 +4,22 @@ import { Link } from "react-router-dom";
 import auth from "../../firebase/firebase.config";
 import { useShopContext } from "../../provider/ContextProvider";
 const Profile = () => {
-  const { userInfoState } = useShopContext();
+  const { user, setUser } = useShopContext();
+  const handleSignOut = (): void => {
+    // set user details null
+    setUser({
+      email: null,
+      displayName: null,
+      photoURL: null,
+    });
+    // signOut user
+    signOut(auth);
+  };
   return (
     <>
-      {userInfoState.user?.email ? (
+      {user?.email ? (
         <div>
-          <button
-            className="text-white mt-3 pr-3"
-            onClick={() => signOut(auth)}
-          >
+          <button className="text-white mt-3 pr-3" onClick={handleSignOut}>
             Sign out
           </button>
           <img src="" />

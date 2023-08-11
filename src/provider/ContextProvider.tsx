@@ -1,16 +1,19 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import auth from "../firebase/firebase.config";
 import {
   ContextProviderProps,
   MenuState,
   ShopContextData,
-  UserInfoState,
+  User,
 } from "../tsInterfaces&types/ContextProvider";
-import {
-  menuReducer,
-  userInfoReducer,
-} from "../utilitesFn/ShopContextProviderFn";
+import { menuReducer } from "../utilitesFn/ShopContextProviderFn";
 
 // initial menuState data of useReducer hook for hambergerMenu
 const initialMenuState: MenuState = {
@@ -19,22 +22,21 @@ const initialMenuState: MenuState = {
   subMenuIndex: 0,
 };
 
-// intial userInfo of useReducer hook
-const initialUserInfoState: UserInfoState = {
-  loading: false,
-  user: {
-    displayName: "",
-    email: "",
-    photoUrl: "",
-  },
+// intial user of useState
+const initialUserState: User = {
+  displayName: "",
+  email: "",
+  photoURL: "",
 };
 
 // initial data of shopContext
 const initialContextData: ShopContextData = {
   menuState: initialMenuState,
   menuDispatch: () => {},
-  userInfoState: initialUserInfoState,
-  userInfoDispatch: () => {},
+  user: initialUserState,
+  setUser: () => {},
+  loading: false,
+  setLoading: () => {},
 };
 
 // create amazon shop context.
@@ -44,29 +46,23 @@ const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
   // useReducer to controll hambergurMenu
   const [menuState, menuDispatch] = useReducer(menuReducer, initialMenuState);
 
-  // user info useReducer.
-  const [userInfoState, userInfoDispatch] = useReducer(
-    userInfoReducer,
-    initialUserInfoState
-  );
-
+  // user information state & loading state
+  const [user, setUser] = useState<User>(initialUserState);
+  const [loading, setLoading] = useState<boolean>(true);
   // track authState change
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       // TODO: save user to database
       if (currentUser?.email) {
-        userInfoDispatch({
-          target: "USER",
-          loading: false,
-          user: {
-            email: currentUser.email,
-            displayName: currentUser.displayName,
-            photoUrl: currentUser.photoURL,
-          },
-        });
+        const user: User = {
+          displayName: currentUser.displayName,
+          email: currentUser.email,
+          photoURL: currentUser.photoURL,
+        };
+        setUser(user);
       }
     });
-
+    setLoading(false);
     return () => {
       unSubscribe();
     };
@@ -76,11 +72,12 @@ const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
   const shopContextData: ShopContextData = {
     menuState,
     menuDispatch,
-    userInfoState,
-    userInfoDispatch,
+    user,
+    setUser,
+    loading,
+    setLoading,
   };
 
-  console.log(userInfoState);
   return (
     <ShopContext.Provider value={shopContextData}>
       {children}

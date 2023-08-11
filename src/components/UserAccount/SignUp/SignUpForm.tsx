@@ -22,7 +22,7 @@ const signUpFormInitialValue: SignUpFormState = {
   showPassword: false,
 };
 
-const SignUpForm = () => {
+const SignUpForm: React.FC<{ state: string }> = ({ state }) => {
   const navigate = useNavigate();
   // useReducer hook for SignUpForm
   const [
@@ -72,7 +72,7 @@ const SignUpForm = () => {
                   signUpFormDispatch({
                     loading: false,
                   });
-                  navigate("/", { replace: true });
+                  navigate(state, { replace: true });
                 })
                 .catch((err) => {
                   console.log(err);

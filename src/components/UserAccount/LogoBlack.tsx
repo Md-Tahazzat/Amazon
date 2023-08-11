@@ -10,7 +10,6 @@ const LogoBlack = () => {
       to="/"
     >
       <Lottie
-        onClick={() => console.log("clicking")}
         loop={false}
         animationData={amazon_lottie_logo}
         play

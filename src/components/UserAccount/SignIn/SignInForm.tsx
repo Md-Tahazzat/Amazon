@@ -19,8 +19,9 @@ const signInFormInitialState: SignInFormState = {
   loading: false,
 };
 
-const SignInForm = () => {
+const SignInForm: React.FC<{ state: string }> = ({ state }) => {
   const navigate = useNavigate();
+
   // reducer hook to manage error & showPasswordStage
   const [{ showPassword, loading, firebaseError }, signInFormDispatch] =
     useReducer(signInFormReducer, signInFormInitialState);
@@ -41,11 +42,13 @@ const SignInForm = () => {
     // firebase signIn functionality
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((result) => {
+        // extract the previous location pathname
         if (result.user) {
           toast.success("Sign in successfull");
           signInFormDispatch({ loading: false });
           reset();
-          navigate("/", { replace: true });
+
+          navigate(state, { replace: true });
         }
       })
       .catch((err) => {

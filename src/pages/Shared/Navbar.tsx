@@ -11,7 +11,7 @@ import { useShopContext } from "../../provider/ContextProvider";
 const Navbar = () => {
   const { menuDispatch } = useShopContext();
   return (
-    <nav className=" mx-auto bg-[#131921]">
+    <nav className=" mx-auto bg-[#131921] z-50">
       {/* top nav section starts */}
       <div
         id="nav-top"

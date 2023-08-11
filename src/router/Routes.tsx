@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../layoutes/Root";
 import UserProfile from "../layoutes/UserProfile";
+import Home from "../pages/Home/Home";
 import SignIn from "../pages/UserAccount/SignIn";
 import SignUp from "../pages/UserAccount/SignUp";
+import PrivateRouteWrapper from "../privateRouteWrapper/PrivateRouteWrapper";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <p>Defaut home</p>,
+        element: <Home />,
       },
 
       {
@@ -54,7 +56,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/user-profile",
-    element: <UserProfile />,
+    element: (
+      <PrivateRouteWrapper>
+        <UserProfile />
+      </PrivateRouteWrapper>
+    ),
   },
   {
     path: "/sign-in",

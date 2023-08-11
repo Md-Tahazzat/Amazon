@@ -65,3 +65,11 @@
 .gradient-border {
   color: #ffffff1a;
 }
+
+/* banner swiper styles */
+#banner-swiper > div.swiper-button-prev {
+  @apply ml-10 text-orange-500 top-32;
+}
+#banner-swiper > div.swiper-button-next {
+  @apply mr-10 text-orange-500 top-32;
+}

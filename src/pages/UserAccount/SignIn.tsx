@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LogoBlack from "../../components/UserAccount/LogoBlack";
 import SignInForm from "../../components/UserAccount/SignIn/SignInForm";
 import UserAccountFooter from "../../components/UserAccount/UserAccountFooter";
 
 const SignIn = () => {
+  // get the redirect location
+  const location = useLocation();
+  const state = location.state || "/";
   return (
     <div className="min-h-screen flex flex-col px-4 md:px-0 items-center justify-start w-full bg-white">
       <div className="max-w-[400px] w-full">
@@ -15,11 +18,12 @@ const SignIn = () => {
           <h1 className="text-2xl text-center mb-2 md:mb-3 md:text-3xl font-semibold">
             Sign in
           </h1>
-          <SignInForm />
+          <SignInForm state={state} />
         </section>
 
         <div className="divider my-5">New to Amazon?</div>
         <Link
+          state={state}
           to="/sign-up"
           className="text-center block hover:bg-blue-50 rounded-md duration-200 py-2 border"
         >
