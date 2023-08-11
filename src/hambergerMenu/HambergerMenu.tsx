@@ -32,6 +32,7 @@ const HambergerMenu = () => {
     <div className="drawer">
       <input
         id="menu-drawer"
+        onChange={() => {}}
         type="checkbox"
         checked={menuState.isMenuOpen}
         className="drawer-toggle"

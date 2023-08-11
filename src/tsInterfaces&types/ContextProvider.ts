@@ -22,13 +22,15 @@ export interface MenuAction {
 export interface ShopContextData {
   menuState: MenuState;
   menuDispatch: React.Dispatch<MenuAction>;
+  userInfoState: UserInfoState;
+  userInfoDispatch: React.Dispatch<UserInfoAction>;
 }
 
 // interface for userDetails
 export interface User {
-  photoUrl?: string;
-  email?: string;
-  displayName: string;
+  photoUrl?: string | null;
+  email?: string | null;
+  displayName?: string | null;
 }
 // interface for userInfoState of useReducer hook
 export interface UserInfoState {

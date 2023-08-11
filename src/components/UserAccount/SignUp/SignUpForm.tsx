@@ -1,8 +1,7 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useReducer } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { FaEye } from "react-icons/fa";
-import { FaEyeSlash } from "react-icons/fa6";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ImSpinner9 } from "react-icons/im";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase/firebase.config";
@@ -10,7 +9,10 @@ import {
   SignUpFormData,
   SignUpFormState,
 } from "../../../tsInterfaces&types/UserAccount";
-import { signUpFormReducer } from "../../../utilitesFn/UserAccount";
+import {
+  signUpFormReducer,
+  uploadImageInImgbb,
+} from "../../../utilitesFn/UserAccount";
 
 // initial value of signUpFormReducer
 const signUpFormInitialValue: SignUpFormState = {
@@ -56,13 +58,32 @@ const SignUpForm = () => {
     // create user in firebase.
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
-        console.log(userCredential);
-
-        // set loading state
-        signUpFormDispatch({
-          loading: false,
-        });
-        navigate("/", { replace: true });
+        if (userCredential?.user) {
+          // upload image through imgbb api
+          uploadImageInImgbb(data.image[0]).then((result) => {
+            if (result !== "error" && auth.currentUser !== null) {
+              // update profile in firebase.
+              updateProfile(auth.currentUser, {
+                displayName: data.name,
+                photoURL: result,
+              })
+                .then((res) => {
+                  console.log(res);
+                  signUpFormDispatch({
+                    loading: false,
+                  });
+                  navigate("/", { replace: true });
+                })
+                .catch((err) => {
+                  console.log(err);
+                  signUpFormDispatch({
+                    loading: false,
+                    firebaseError: err.message,
+                  });
+                });
+            }
+          });
+        }
       })
       .catch((err) => {
         // set loading and firbase error message.
@@ -73,7 +94,6 @@ const SignUpForm = () => {
       });
   };
 
-  console.log(loading);
   return (
     <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
       <div className="input-box">
@@ -105,6 +125,21 @@ const SignUpForm = () => {
           type="email"
           {...register("email", { required: true })}
           placeholder="Enter your email"
+          required
+        />
+      </div>
+
+      {/* Image file input */}
+      <div className="input-box">
+        <label className="input-label" htmlFor="image">
+          Image
+        </label>
+        <input
+          className="mb-2"
+          id="image"
+          type="file"
+          {...register("image", { required: true })}
+          accept="image/*"
           required
         />
       </div>

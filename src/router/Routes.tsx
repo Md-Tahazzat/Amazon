@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../layoutes/Root";
+import UserProfile from "../layoutes/UserProfile";
 import SignIn from "../pages/UserAccount/SignIn";
 import SignUp from "../pages/UserAccount/SignUp";
 
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
         element: <p>From women's fashion</p>,
       },
     ],
+  },
+  {
+    path: "/user-profile",
+    element: <UserProfile />,
   },
   {
     path: "/sign-in",

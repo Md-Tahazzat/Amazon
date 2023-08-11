@@ -19,12 +19,6 @@ const initialMenuState: MenuState = {
   subMenuIndex: 0,
 };
 
-// initial data of shopContext
-const initialContextData: ShopContextData = {
-  menuState: initialMenuState,
-  menuDispatch: () => {},
-};
-
 // intial userInfo of useReducer hook
 const initialUserInfoState: UserInfoState = {
   loading: false,
@@ -33,6 +27,14 @@ const initialUserInfoState: UserInfoState = {
     email: "",
     photoUrl: "",
   },
+};
+
+// initial data of shopContext
+const initialContextData: ShopContextData = {
+  menuState: initialMenuState,
+  menuDispatch: () => {},
+  userInfoState: initialUserInfoState,
+  userInfoDispatch: () => {},
 };
 
 // create amazon shop context.
@@ -52,8 +54,17 @@ const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       // TODO: save user to database
-
-      console.log(currentUser);
+      if (currentUser?.email) {
+        userInfoDispatch({
+          target: "USER",
+          loading: false,
+          user: {
+            email: currentUser.email,
+            displayName: currentUser.displayName,
+            photoUrl: currentUser.photoURL,
+          },
+        });
+      }
     });
 
     return () => {
@@ -65,7 +76,11 @@ const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
   const shopContextData: ShopContextData = {
     menuState,
     menuDispatch,
+    userInfoState,
+    userInfoDispatch,
   };
+
+  console.log(userInfoState);
   return (
     <ShopContext.Provider value={shopContextData}>
       {children}
