@@ -73,3 +73,5 @@
 #banner-swiper > div.swiper-button-next {
   @apply mr-10 text-orange-500 top-32;
 }
+
+/* styles for react magnifying image */

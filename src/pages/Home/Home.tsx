@@ -7,6 +7,9 @@ const Home = () => {
   return (
     <div>
       <Banner />
+      <div id="magnify-container" className="my-20 mx-auto">
+        <p>From home</p>
+      </div>
     </div>
   );
 };

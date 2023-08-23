@@ -53,9 +53,9 @@ const SubMenu: React.FC<SubMenuProps> = ({
           >
             <NavLink
               className={`block py-2.5 pl-3 ${
-                parsedUrl.subcategory === item.href ? "activeLink" : ""
+                parsedUrl.sub_category === item.href ? "activeLink" : ""
               }`}
-              to={`/${categoryHref}?subcategory=${item.href}`}
+              to={`/products?category=${categoryHref}&sub_category=${item.href}`}
             >
               {item.label}
             </NavLink>
