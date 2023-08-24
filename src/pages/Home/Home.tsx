@@ -5,7 +5,7 @@ const Home = () => {
   const { user } = useShopContext();
   console.log(user);
   return (
-    <div>
+    <div className="bg-[#f1f3f4]">
       <Banner />
       <div id="magnify-container" className="my-20 mx-auto">
         <p>From home</p>

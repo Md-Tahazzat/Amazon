@@ -1,33 +1,30 @@
+import { useNavigate } from "react-router-dom";
 import { ProductType } from "../../tsInterfaces&types/Products";
 import DeliveryDate from "./DeliveryDate";
 import Ratings from "./Ratings";
 
 const Product: React.FC<{ product: ProductType }> = ({ product }) => {
+  const navigate = useNavigate();
   // get the dollars & cents
   const priceString = product.price.toFixed(2);
   const [dollars, cents] = priceString.split(".");
 
-  // product details navigator function.
-  const navigateDetailsPage = (id: string): void => {
-    console.log(id);
-  };
-
   return (
     <div
-      onClick={() => navigateDetailsPage(product._id)}
+      onClick={() => navigate(`/products/${product._id}`, { replace: true })}
       title="click to view details"
       className="flex md:flex-col hover:border-orange-400 w-full duration-200 rounded-md cursor-pointer overflow-hidden bg-slate-50 mb-3 md:mb-0 border md:pb-2"
     >
-      <div className="w-2/6 md:w-full md:h-[170px] bg-white flex items-center justify-center rounded-sm">
+      <div className="w-5/12 md:w-full md:h-[170px] bg-white flex items-center justify-center rounded-sm">
         <img
-          className=" max-w-full md:max-w-[223px] lg:max-w-[235px] md:py-2 max-h-[165px]"
+          className=" w-full md:max-w-[223px] lg:max-w-[235px] p-3 md:py-2 md:px-2 max-h-[165px]"
           src={product.images[0]}
           alt=""
         />
       </div>
 
       {/* product information */}
-      <div className="mx-2 mt-1">
+      <div className="mx-2 mt-1 w-7/12 md:w-full">
         <h1 className="text-base md:text-base font-semibold">
           {product.title
             ? product.title.length > 85
@@ -36,7 +33,7 @@ const Product: React.FC<{ product: ProductType }> = ({ product }) => {
             : ""}
         </h1>
 
-        <Ratings ratingsInfo={product.ratings_info} />
+        <Ratings ratingsInfo={product.ratings_info} showMoreDetails={false} />
         {/* price */}
         <p className="text-sm flex mt-0.5 items-start">
           <span>$</span>

@@ -54,15 +54,11 @@ const Navbar = () => {
           <span className="text-base ml-1">All</span>
         </label>
         <ul className="flex w-full items-center gap-2 min-w-screen text-white">
-          <li className="hover-border bg-slate-500">Today's Deals</li>
-          <li className="hover-border min-w-[100px] bg-slate-500">
-            Customer Service
-          </li>
-          <li className="hover-border min-w-[100px] bg-slate-500">Registry</li>
-          <li className="hover-border min-w-[100px] bg-slate-500">
-            Gift Cards
-          </li>
-          <li className="hover-border min-w-[100px] bg-slate-500">Sell</li>
+          <li className="hover-border">Today's Deals</li>
+          <li className="hover-border min-w-[100px]">Customer Service</li>
+          <li className="hover-border min-w-[100px]">Registry</li>
+          <li className="hover-border min-w-[100px]">Gift Cards</li>
+          <li className="hover-border min-w-[100px]">Sell</li>
         </ul>
       </div>
       <HambergerMenu />
