@@ -7,8 +7,8 @@ import TitleAndRatings from "./TitleAndRatings";
 
 const Details: React.FC<{ product: ProductType }> = ({ product }) => {
   return (
-    <div className="w-full lg:w-7/12 flex flex-col-reverse lg:gap-2 lg:flex-row">
-      <div className="w-full lg:w-9/12">
+    <div className="w-full lg:w-7/12 flex flex-col-reverse lg:gap-3 lg:flex-row items-start">
+      <div className="w-full lg:w-[72%]">
         {/* title & details */}
         <TitleAndRatings
           className="hidden lg:block"
@@ -20,7 +20,7 @@ const Details: React.FC<{ product: ProductType }> = ({ product }) => {
         />
 
         {/* product price */}
-        <ProductPrice price={product.price} />
+        <ProductPrice className="hidden lg:block" price={product.price} />
 
         {/* product information (Brand, model etc) */}
         <ProductInfo productInfo={product.product_details} />
@@ -30,7 +30,7 @@ const Details: React.FC<{ product: ProductType }> = ({ product }) => {
       </div>
 
       {/* add to cart info */}
-      <div className="w-full lg:w-3/12">
+      <div className="w-full lg:w-[28%] pb-2 mb-2 border-b-2 lg:p-4 lg:sticky lg:top-1 lg:border">
         <AddToCart productPrice={product.price} />
       </div>
     </div>

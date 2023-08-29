@@ -18,12 +18,6 @@ const ProductInfo: React.FC<{ productInfo: ProductDetails }> = ({
             );
           })}
       </ul>
-      {/* <ul>
-        {keys.length > 0 &&
-          keys.map((key, index) => {
-            return <li key={index}>: {productInfo[key]}</li>;
-          })}
-      </ul> */}
     </div>
   );
 };
