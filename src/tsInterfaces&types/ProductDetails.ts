@@ -7,3 +7,9 @@ export interface TitleAndRatingsProps {
   ratings: RatingsInfo;
   showMoreDetails: boolean;
 }
+
+export interface SimiliarProductsType {
+  category: string;
+  id: string;
+  subcategory: string;
+}

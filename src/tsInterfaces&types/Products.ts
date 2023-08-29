@@ -4,7 +4,8 @@ export interface RatingsInfo {
   answered_question: number;
 }
 
-export interface Comments {
+export interface CommentType {
+  _id: string;
   name: string;
   image: string | undefined;
   rating: string;
@@ -26,7 +27,7 @@ export interface ProductType {
   product_details: ProductDetails[];
   about: string[];
   description: string;
-  comments: Comments[];
+  comments: CommentType[];
   category: string;
   sub_category: string;
 }

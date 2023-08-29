@@ -6,16 +6,25 @@ const ProductInfo: React.FC<{ productInfo: ProductDetails }> = ({
 }) => {
   const keys = Object.keys(productInfo);
   return (
-    <ul className="mb-1 lg:pb-1 lg:border-b-2 ">
-      {keys.length > 0 &&
-        keys.map((key) => {
-          return (
-            <li>
-              <span className="font-semibold">{key}</span>: {productInfo[key]}
-            </li>
-          );
-        })}
-    </ul>
+    <div className="mb-1 pb-1 w-full flex items-start gap-3 border-b-2 ">
+      <ul>
+        {keys.length > 0 &&
+          keys.map((key, index) => {
+            return (
+              <li className="flex my-2 leading-4" key={index}>
+                <span className="font-semibold w-3/6">{key}</span>{" "}
+                <span className="w-3/6">{productInfo[key]}</span>
+              </li>
+            );
+          })}
+      </ul>
+      {/* <ul>
+        {keys.length > 0 &&
+          keys.map((key, index) => {
+            return <li key={index}>: {productInfo[key]}</li>;
+          })}
+      </ul> */}
+    </div>
   );
 };
 

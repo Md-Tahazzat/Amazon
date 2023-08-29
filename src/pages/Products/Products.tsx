@@ -28,7 +28,7 @@ const Products = () => {
       <div className="grid md:grid-cols-3 lg:grid-cols-5 md:gap-3">
         {products !== undefined && products.length > 0 ? (
           products.map((product, index) => (
-            <Product product={product} key={index} />
+            <Product className="w-full" product={product} key={index} />
           ))
         ) : (
           <p>0 products available</p>

@@ -12,7 +12,7 @@ const ProductImages: React.FC<{ images: string[] }> = ({ images }) => {
     }
   };
   return (
-    <div className="flex mt-4 lg:mt-0 w-full lg:w-[37%] justify-center gap-2">
+    <div className="flex lg:sticky lg:top-4 my-4 lg:my-0 w-full lg:w-[37%] justify-center gap-2">
       {/* side images */}
       <div className="flex w-[14%] md:w-[8%] lg:w-[12%] flex-col justify-start">
         {images?.map((link, index) => {
@@ -31,7 +31,7 @@ const ProductImages: React.FC<{ images: string[] }> = ({ images }) => {
 
       {/* large image */}
       <div className="w-[86%] md:w-[86%] lg:w-[88%] h-[350px] md:h-[420px] lg:h-[460px] flex items-center justify-center">
-        <img className="max-h-full w-full" src={largeImage} alt="" />
+        <img className="max-h-full max-w-full" src={largeImage} alt="" />
       </div>
     </div>
   );

@@ -3,7 +3,10 @@ import { ProductType } from "../../tsInterfaces&types/Products";
 import DeliveryDate from "./DeliveryDate";
 import Ratings from "./Ratings";
 
-const Product: React.FC<{ product: ProductType }> = ({ product }) => {
+const Product: React.FC<{ product: ProductType; className: string }> = ({
+  product,
+  className,
+}) => {
   const navigate = useNavigate();
   // get the dollars & cents
   const priceString = product.price.toFixed(2);
@@ -13,11 +16,11 @@ const Product: React.FC<{ product: ProductType }> = ({ product }) => {
     <div
       onClick={() => navigate(`/products/${product._id}`, { replace: true })}
       title="click to view details"
-      className="flex md:flex-col hover:border-orange-400 w-full duration-200 rounded-md cursor-pointer overflow-hidden bg-slate-50 mb-3 md:mb-0 border md:pb-2"
+      className={`${className} flex md:flex-col hover:border-orange-400 duration-200 rounded-md cursor-pointer overflow-hidden bg-slate-50 mb-3 md:mb-0 border md:pb-2`}
     >
       <div className="w-5/12 md:w-full md:h-[170px] bg-white flex items-center justify-center rounded-sm">
         <img
-          className=" w-full md:max-w-[223px] lg:max-w-[235px] p-3 md:py-2 md:px-2 max-h-[165px]"
+          className="w-5/6  md:max-w-[223px] lg:max-w-[235px] p-3 md:py-2 md:px-2 max-h-[165px]"
           src={product.images[0]}
           alt=""
         />

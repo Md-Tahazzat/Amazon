@@ -1,12 +1,14 @@
 import { ProductType } from "../../tsInterfaces&types/Products";
+import AboutProduct from "./AboutProduct";
+import AddToCart from "./AddToCart";
 import ProductInfo from "./ProductInfo";
 import ProductPrice from "./ProductPrice";
 import TitleAndRatings from "./TitleAndRatings";
 
 const Details: React.FC<{ product: ProductType }> = ({ product }) => {
   return (
-    <div className="w-7/12 flex flex-col-reverse lg:gap-2 lg:flex-row">
-      <div className="w-full lg:w-4/6">
+    <div className="w-full lg:w-7/12 flex flex-col-reverse lg:gap-2 lg:flex-row">
+      <div className="w-full lg:w-9/12">
         {/* title & details */}
         <TitleAndRatings
           className="hidden lg:block"
@@ -22,11 +24,14 @@ const Details: React.FC<{ product: ProductType }> = ({ product }) => {
 
         {/* product information (Brand, model etc) */}
         <ProductInfo productInfo={product.product_details} />
+
+        {/* about product */}
+        <AboutProduct about={product.about} />
       </div>
 
       {/* add to cart info */}
-      <div className="w-full lg:w-2/6">
-        <h1>cart information</h1>
+      <div className="w-full lg:w-3/12">
+        <AddToCart productPrice={product.price} />
       </div>
     </div>
   );

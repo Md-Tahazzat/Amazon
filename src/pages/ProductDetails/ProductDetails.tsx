@@ -3,7 +3,10 @@ import { useParams } from "react-router-dom";
 import Container from "../../components/Container/Container";
 import Loading from "../../components/Loading/Loading";
 import Details from "../../components/ProductDetails/Details";
+import ProductComments from "../../components/ProductDetails/ProductComments";
 import ProductImages from "../../components/ProductDetails/ProductImages";
+import ProductPhotoGallery from "../../components/ProductDetails/ProductPhotoGallery";
+import SimiliarProducts from "../../components/ProductDetails/SimiliarProducts";
 import TitleAndRatings from "../../components/ProductDetails/TitleAndRatings";
 import instance from "../../hooks/useAxiosInstance";
 import { ProductType } from "../../tsInterfaces&types/Products";
@@ -26,7 +29,7 @@ const ProductDetails = () => {
   console.log(id, product);
   return (
     <Container>
-      <div className="flex flex-col lg:flex-row lg:gap-4 py-3">
+      <div className="flex flex-col mb-1 border-b-2 lg:flex-row items-start lg:gap-4 py-3">
         {
           // title & ratings info
           product && (
@@ -55,6 +58,35 @@ const ProductDetails = () => {
           product && <Details product={product} />
         }
       </div>
+
+      {/* product description */}
+      <p className=" border-b-2 pb-1 mb-1">
+        <span className="font-semibold">Product description: </span>
+        {product?.description}
+      </p>
+
+      {
+        // similiar products
+        product?.category && product.sub_category && (
+          <SimiliarProducts
+            id={product._id}
+            category={product?.category}
+            subcategory={product?.sub_category}
+          />
+        )
+      }
+
+      {
+        // product photo gallery
+        product?.images && (
+          <ProductPhotoGallery galleryPhotos={product?.images} />
+        )
+      }
+
+      {
+        // product comments
+        product?.comments && <ProductComments comments={product.comments} />
+      }
     </Container>
   );
 };
