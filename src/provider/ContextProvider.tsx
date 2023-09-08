@@ -9,46 +9,30 @@ import {
 import auth from "../firebase/firebase.config";
 import {
   ContextProviderProps,
-  MenuState,
   ShopContextData,
   User,
 } from "../tsInterfaces&types/ContextProvider";
 import { menuReducer } from "../utilitesFn/ShopContextProviderFn";
-
-// initial menuState data of useReducer hook for hambergerMenu
-const initialMenuState: MenuState = {
-  isMenuOpen: false,
-  isSubMenuOpen: false,
-  subMenuIndex: 0,
-};
-
-// intial user of useState
-const initialUserState: User = {
-  displayName: "",
-  email: "",
-  photoURL: "",
-};
-
-// initial data of shopContext
-const initialContextData: ShopContextData = {
-  menuState: initialMenuState,
-  menuDispatch: () => {},
-  user: initialUserState,
-  setUser: () => {},
-  loading: false,
-  setLoading: () => {},
-};
+import {
+  initialContextData,
+  initialMenuState,
+  initialUserState,
+} from "./InitialDataOfContextProvider";
 
 // create amazon shop context.
-const ShopContext = createContext<ShopContextData>(initialContextData);
+const SHOP_CONTEXT = createContext<ShopContextData>(initialContextData);
 
 const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
   // useReducer to controll hambergurMenu
   const [menuState, menuDispatch] = useReducer(menuReducer, initialMenuState);
 
+  // useReducer to controll Cart items
+  const [cartProductCount, setCartProductCount] = useState(0);
+
   // user information state & loading state
   const [user, setUser] = useState<User>(initialUserState);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
+
   // track authState change
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -76,15 +60,17 @@ const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
     setUser,
     loading,
     setLoading,
+    cartProductCount,
+    setCartProductCount,
   };
 
   return (
-    <ShopContext.Provider value={shopContextData}>
+    <SHOP_CONTEXT.Provider value={shopContextData}>
       {children}
-    </ShopContext.Provider>
+    </SHOP_CONTEXT.Provider>
   );
 };
 export default ContextProvider;
 
 // create custom hook to use Shop context
-export const useShopContext = () => useContext(ShopContext);
+export const useShopContext = () => useContext(SHOP_CONTEXT);

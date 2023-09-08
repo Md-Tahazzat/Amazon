@@ -1,9 +1,9 @@
-import React from "react";
+type ProductPricePropsType = {
+  price: number;
+  className: string;
+};
 
-const ProductPrice: React.FC<{ price: number; className: string }> = ({
-  price,
-  className,
-}) => {
+const ProductPrice = ({ price, className }: ProductPricePropsType) => {
   const [dollars, cents] = price.toFixed(2).split(".");
   const discountPrice = (price * 10) / 100;
   return (

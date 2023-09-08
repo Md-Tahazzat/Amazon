@@ -21,7 +21,6 @@ const HambergerMenu = () => {
     menuDispatch({ target, actionType, subMenuIndex });
   };
 
-  // TODO: navLinks have to take from the server side.
   const { data } = useQuery("categories", async () => {
     const response: Category[] = await instance.get("/categories");
     return response;

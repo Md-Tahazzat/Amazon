@@ -1,9 +1,6 @@
-import React from "react";
 import { ProductDetails } from "../../tsInterfaces&types/Products";
 
-const ProductInfo: React.FC<{ productInfo: ProductDetails }> = ({
-  productInfo,
-}) => {
+const ProductInfo = ({ productInfo }: { productInfo: ProductDetails }) => {
   const keys = Object.keys(productInfo);
   return (
     <div className="mb-1 pb-1 w-full flex items-start gap-3 border-b-2 ">

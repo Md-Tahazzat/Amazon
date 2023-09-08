@@ -1,7 +1,8 @@
 import { useState } from "react";
+import ReactImageMagnify from "react-image-magnify";
 
-const ProductImages: React.FC<{ images: string[] }> = ({ images }) => {
-  const [largeImage, setlargeImage] = useState<string | undefined>(images[0]);
+const ProductImages = ({ images }: { images: string[] }) => {
+  const [largeImage, setlargeImage] = useState<string>(images[0]);
 
   // image changing handler to chenge the large image.
   const handleImageChange = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -11,6 +12,7 @@ const ProductImages: React.FC<{ images: string[] }> = ({ images }) => {
       setlargeImage(src);
     }
   };
+  console.log(largeImage);
   return (
     <div className="flex lg:sticky lg:top-4 my-4 lg:my-0 w-full lg:w-[37%] justify-center gap-2">
       {/* side images */}
@@ -28,10 +30,30 @@ const ProductImages: React.FC<{ images: string[] }> = ({ images }) => {
           );
         })}
       </div>
-
-      {/* large image */}
+      {/* main image */}
       <div className="w-[86%] md:w-[86%] lg:w-[88%] h-[350px] md:h-[420px] lg:h-[460px] flex items-center justify-center">
-        <img className="max-h-full max-w-full" src={largeImage} alt="" />
+        <ReactImageMagnify
+          {...{
+            smallImage: {
+              alt: "Wristwatch by Ted Baker London",
+              isFluidWidth: true,
+              src: largeImage,
+            },
+            largeImage: {
+              src: largeImage,
+              width: 1200,
+              height: 1400,
+            },
+            enlargedImageContainerDimensions: {
+              width: 800,
+              height: 600,
+            },
+            imageClassName: "react-magnify-small-image",
+            enlargedImageContainerClassName:
+              "react-magnify-large-image-container",
+            enlargedImagePosition: "beside",
+          }}
+        />
       </div>
     </div>
   );

@@ -1,10 +1,17 @@
 import { useState } from "react";
+import { useShopContext } from "../../provider/ContextProvider";
+import { ProductType } from "../../tsInterfaces&types/Products";
+import { CartProduct } from "../../tsInterfaces&types/cartProduct";
+import { updateCartProductOfLocalStorage } from "../../utilitesFn/AddToCart";
 import DeliveryDate from "../Products/DeliveryDate";
 import ProductPrice from "./ProductPrice";
 
-const AddToCart: React.FC<{ productPrice: number }> = ({ productPrice }) => {
-  const [dollars, cents] = productPrice.toFixed(2).split(".");
-  const [quantity, setQuantity] = useState<number>(1);
+const AddToCart = ({ product }: { product: ProductType }) => {
+  const { setCartProductCount, cartProductCount } = useShopContext();
+
+  // get the dollars & cents
+  const [dollars, cents] = product?.price.toFixed(2).split(".");
+  const [quantity, setQuantity] = useState(1);
 
   // quantity handler function
   const handleQuantity = (
@@ -13,13 +20,28 @@ const AddToCart: React.FC<{ productPrice: number }> = ({ productPrice }) => {
     const value = parseInt(event.target.value);
     setQuantity(value);
   };
+
+  // addToCart product handler
+  const handleAddToCart = ({ _id, title, price, images }: ProductType) => {
+    const newAddedProduct: CartProduct = {
+      _id,
+      title,
+      price,
+      quantity,
+      image: images[0],
+    };
+
+    updateCartProductOfLocalStorage(newAddedProduct);
+    setCartProductCount(cartProductCount + quantity);
+  };
+
   return (
     <>
       <p className="lg:flex hidden">
         $<span className="text-2xl -mt-0.5">{dollars}</span>
         {cents}
       </p>
-      <ProductPrice className="lg:hidden" price={productPrice} />
+      <ProductPrice className="lg:hidden" price={product.price} />
       <DeliveryDate />
       <p className="text-sm mb-3">
         Order's within <span className="text-green-700">10 hrs 35 mins</span>
@@ -44,7 +66,10 @@ const AddToCart: React.FC<{ productPrice: number }> = ({ productPrice }) => {
       </div>
 
       {/* add to cart button */}
-      <button className="w-full font-semibold py-1 text-center bg-yellow-300 hover:bg-yellow-400 duration-150 rounded-3xl mb-2">
+      <button
+        onClick={() => handleAddToCart(product)}
+        className="w-full font-semibold py-1 text-center bg-yellow-300 hover:bg-yellow-400 duration-150 rounded-3xl mb-2"
+      >
         Add to Cart
       </button>
       <button className="w-full font-semibold py-1 text-center bg-orange-400 hover:bg-orange-500 duration-150 rounded-3xl mb-4">

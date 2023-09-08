@@ -14,10 +14,3 @@ export interface SubMenuItems {
   label: string;
   href: string;
 }
-
-// interface for subMenu component.
-export interface SubMenuProps {
-  categoryHref: string;
-  subcategories: SubMenuItems[];
-  index: number;
-}

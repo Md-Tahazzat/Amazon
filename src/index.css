@@ -75,3 +75,12 @@
 }
 
 /* styles for react magnifying image */
+.react-magnify-large-image-container {
+  background-color: white !important;
+  overflow: hidden !important;
+  z-index: 150 !important;
+}
+
+.react-magnify-small-image {
+  @apply h-4/6 lg:max-h-full lg:max-w-full;
+}

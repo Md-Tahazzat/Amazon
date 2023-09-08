@@ -19,7 +19,7 @@ const signInFormInitialState: SignInFormState = {
   loading: false,
 };
 
-const SignInForm: React.FC<{ state: string }> = ({ state }) => {
+const SignInForm = ({ state }: { state: string }) => {
   const navigate = useNavigate();
 
   // reducer hook to manage error & showPasswordStage

@@ -1,7 +1,7 @@
-import React from "react";
-
-const ProductPhotoGallery: React.FC<{ galleryPhotos: string[] }> = ({
+const ProductPhotoGallery = ({
   galleryPhotos,
+}: {
+  galleryPhotos: string[];
 }) => {
   return (
     <>

@@ -2,13 +2,15 @@ import queryString from "query-string";
 import { IoArrowUndoOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import { useShopContext } from "../provider/ContextProvider";
-import { SubMenuProps } from "../tsInterfaces&types/HambergerMenu";
+import { SubMenuItems } from "../tsInterfaces&types/HambergerMenu";
 
-const SubMenu: React.FC<SubMenuProps> = ({
-  categoryHref,
-  subcategories,
-  index,
-}) => {
+type SubMenuPropsType = {
+  categoryHref: string;
+  subcategories: SubMenuItems[];
+  index: number;
+};
+
+const SubMenu = ({ categoryHref, subcategories, index }: SubMenuPropsType) => {
   const { menuState, menuDispatch } = useShopContext();
 
   // hambergerMenu handler function.

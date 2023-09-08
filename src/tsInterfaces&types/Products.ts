@@ -7,7 +7,7 @@ export interface RatingsInfo {
 export interface CommentType {
   _id: string;
   name: string;
-  image: string | undefined;
+  image: string;
   rating: string;
   date: string;
   location: string | undefined;

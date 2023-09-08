@@ -22,7 +22,7 @@ const signUpFormInitialValue: SignUpFormState = {
   showPassword: false,
 };
 
-const SignUpForm: React.FC<{ state: string }> = ({ state }) => {
+const SignUpForm = ({ state }: { state: string }) => {
   const navigate = useNavigate();
   // useReducer hook for SignUpForm
   const [

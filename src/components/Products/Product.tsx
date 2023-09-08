@@ -3,10 +3,12 @@ import { ProductType } from "../../tsInterfaces&types/Products";
 import DeliveryDate from "./DeliveryDate";
 import Ratings from "./Ratings";
 
-const Product: React.FC<{ product: ProductType; className: string }> = ({
-  product,
-  className,
-}) => {
+type ProductPropsType = {
+  product: ProductType;
+  className: string;
+};
+
+const Product = ({ product, className }: ProductPropsType) => {
   const navigate = useNavigate();
   // get the dollars & cents
   const priceString = product.price.toFixed(2);
@@ -20,7 +22,7 @@ const Product: React.FC<{ product: ProductType; className: string }> = ({
     >
       <div className="w-5/12 md:w-full md:h-[170px] bg-white flex items-center justify-center rounded-sm">
         <img
-          className="w-5/6  md:max-w-[223px] lg:max-w-[235px] p-3 md:py-2 md:px-2 max-h-[165px]"
+          className=" md:max-w-[223px] lg:max-w-[235px] p-3 md:py-2 md:px-2 max-h-[165px]"
           src={product.images[0]}
           alt=""
         />

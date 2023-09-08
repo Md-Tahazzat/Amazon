@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Rating from "react-rating";
 import { CommentType } from "../../tsInterfaces&types/Products";
 
-const Comment: React.FC<{ comment: CommentType }> = ({ comment }) => {
+const Comment = ({ comment }: { comment: CommentType }) => {
   const [showMore, setShowMore] = useState<boolean>(false);
 
   //   TODO: it should take from the database dynamically.

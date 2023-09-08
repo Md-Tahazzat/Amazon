@@ -38,7 +38,7 @@ const Profile = () => {
           <span className=" flex lg:hidden items-center font-semibold text-xl py-1">
             <span className="text-xs">Sign In</span>
             <FaAngleRight className="text-[10px] mt-1 " />{" "}
-            <FaUser className="text-2xl" />
+            <FaUser className="" />
           </span>
         </Link>
       )}

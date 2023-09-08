@@ -1,19 +1,20 @@
-import React from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Rating from "react-rating";
 import { RatingsInfo } from "../../tsInterfaces&types/Products";
 
-const Ratings: React.FC<{
+type RatingPropsType = {
   ratingsInfo: RatingsInfo;
   showMoreDetails: boolean;
-}> = ({ ratingsInfo, showMoreDetails }) => {
+};
+
+const Ratings = ({ ratingsInfo, showMoreDetails }: RatingPropsType) => {
   return (
     <div className="flex items-center gap-1">
       <span className="text-sm font-semibold">{ratingsInfo.avg_ratings}</span>
 
       {/*@ts-ignore */}
       <Rating
-        className="mt-1"
+        className="mt-1 z-50"
         readonly
         placeholderSymbol={<AiFillStar className="text-orange-500" />}
         placeholderRating={parseFloat(ratingsInfo.avg_ratings)}

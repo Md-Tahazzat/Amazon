@@ -5,7 +5,7 @@ import ProductInfo from "./ProductInfo";
 import ProductPrice from "./ProductPrice";
 import TitleAndRatings from "./TitleAndRatings";
 
-const Details: React.FC<{ product: ProductType }> = ({ product }) => {
+const Details = ({ product }: { product: ProductType }) => {
   return (
     <div className="w-full lg:w-7/12 flex flex-col-reverse lg:gap-3 lg:flex-row items-start">
       <div className="w-full lg:w-[72%]">
@@ -30,8 +30,8 @@ const Details: React.FC<{ product: ProductType }> = ({ product }) => {
       </div>
 
       {/* add to cart info */}
-      <div className="w-full lg:w-[28%] pb-2 mb-2 border-b-2 lg:p-4 lg:sticky lg:top-1 lg:border">
-        <AddToCart productPrice={product.price} />
+      <div className="w-full lg:w-[28%] pb-2 mb-2 border-b-2 lg:p-4  lg:top-1 lg:border">
+        <AddToCart product={product} />
       </div>
     </div>
   );

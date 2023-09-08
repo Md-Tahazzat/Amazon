@@ -5,11 +5,11 @@ import { ProductType } from "../../tsInterfaces&types/Products";
 import Loading from "../Loading/Loading";
 import Product from "../Products/Product";
 
-const SimiliarProducts: React.FC<SimiliarProductsType> = ({
+const SimiliarProducts = ({
   id,
   category,
   subcategory,
-}) => {
+}: SimiliarProductsType) => {
   // get all the similiar products by category & sub_category
   const { data: products, isLoading } = useQuery(
     [category, subcategory],

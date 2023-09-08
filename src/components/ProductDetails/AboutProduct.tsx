@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-const AboutProduct: React.FC<{ about: string[] }> = ({ about }) => {
+
+type AboutProductType = {
+  about: string[];
+};
+
+const AboutProduct = ({ about }: AboutProductType) => {
   const [seeMore, setSeeMore] = useState<boolean>(false);
   return (
     <>

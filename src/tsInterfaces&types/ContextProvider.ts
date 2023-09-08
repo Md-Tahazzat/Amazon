@@ -33,4 +33,12 @@ export interface ShopContextData {
   setUser: React.Dispatch<User>;
   loading: boolean;
   setLoading: React.Dispatch<boolean>;
+  cart: string[];
+  cartDispatch: React.Dispatch<CartAction>;
+}
+
+// interface for action parameter of cartReducer function
+export interface CartAction {
+  actionType: "ADD" | "DELETE" | "RESET";
+  _id: string;
 }
