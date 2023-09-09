@@ -25,8 +25,6 @@ const ProductDetails = () => {
   if (isLoading) {
     return <Loading className="w-full h-[80vh]" />;
   }
-
-  console.log(id, product);
   return (
     <Container>
       <div className="flex flex-col mb-1 border-b-2 lg:flex-row items-start lg:gap-4 py-3">

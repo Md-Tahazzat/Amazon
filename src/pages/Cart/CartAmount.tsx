@@ -4,7 +4,7 @@ import { useShopContext } from "../../provider/ContextProvider";
 const CartAmount = () => {
   const { cartProductCount } = useShopContext();
   return (
-    <div className="w-full md:bg-white mb-5 md:mb-0 rounded-md md:w-4/12 lg:w-3/12 py-2 md:p-3 lg:p-5  md:sticky top-3">
+    <div className="w-full px-3 md:bg-white mb-5 md:mb-0 rounded-md md:w-4/12 lg:w-3/12 py-2 md:p-3 lg:p-5  md:sticky top-3">
       <div className="flex flex-col md:flex-col-reverse">
         {/* TODO: have make the subtotal amount dynamic */}
         <h1 className="text-2xl md:text-[1.3rem] font-semibold mb-2">

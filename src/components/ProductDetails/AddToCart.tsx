@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useShopContext } from "../../provider/ContextProvider";
 import { ProductType } from "../../tsInterfaces&types/Products";
 import { CartProduct } from "../../tsInterfaces&types/cartProduct";
-import { updateCartProductOfLocalStorage } from "../../utilitesFn/AddToCart";
+import { addCartProductToLocalStorage } from "../../utilitesFn/AddToCart";
 import DeliveryDate from "../Products/DeliveryDate";
 import ProductPrice from "./ProductPrice";
 
@@ -31,7 +31,7 @@ const AddToCart = ({ product }: { product: ProductType }) => {
       image: images[0],
     };
 
-    updateCartProductOfLocalStorage(newAddedProduct);
+    addCartProductToLocalStorage(newAddedProduct);
     setCartProductCount(cartProductCount + quantity);
   };
 
