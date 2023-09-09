@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useShopContext } from "../../provider/ContextProvider";
 import { CartProduct } from "../../tsInterfaces&types/cartProduct";
 
@@ -26,25 +27,30 @@ const Cart = () => {
   }, []);
 
   return (
-    <div className="flex hover-border items-end text-lg relative lg:mt-1">
+    <Link
+      to="/cart"
+      className="flex hover-border items-end text-lg relative lg:mt-1"
+    >
       <img
-        className={`${
+        className={`cursor-pointer ${
           cartProductCount > 9 ? "w-10" : "w-9 lg:w-10"
         } h-8 lg:h-9`}
         src="https://i.ibb.co/Hnxbm42/Amazon-cart.png"
         alt="Cart"
       />
-      <span className="hidden lg:block font-bold -ml-1 text-white">cart</span>
+      <span className="hidden cursor-pointer lg:block font-bold -ml-1 text-white">
+        cart
+      </span>
 
       {/* cart product amount */}
       <span
-        className={`absolute text-sm lg:text-md -top-0.5 lg:top-0 font-bold ${
+        className={`absolute cursor-pointer text-sm lg:text-md -top-0.5 lg:top-0 font-bold ${
           cartProductCount > 9 ? "left-[18px]" : "left-[20px] lg:left-[22px]"
         }  rounded-md bg-transparent text-orange-300`}
       >
         {cartProductCount}
       </span>
-    </div>
+    </Link>
   );
 };
 

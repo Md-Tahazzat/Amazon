@@ -1,14 +1,7 @@
 import { CartProduct } from "../tsInterfaces&types/cartProduct";
 
 export const updateCartProductOfLocalStorage = (product: CartProduct) => {
-  // get the previous cart products
-  const previousCartProductsJSON = localStorage.getItem("cart_products");
-  let cartProducts: CartProduct[] | [] = [];
-
-  // check if the any product exist in the local storage
-  if (previousCartProductsJSON !== null) {
-    cartProducts = JSON.parse(previousCartProductsJSON);
-  }
+  let cartProducts = getCartProductFromLocalStorage();
 
   //  check if the cart product is exist in the localstorage
   const existProduct =
@@ -23,4 +16,16 @@ export const updateCartProductOfLocalStorage = (product: CartProduct) => {
 
   // set to local storage
   localStorage.setItem("cart_products", JSON.stringify(cartProducts));
+};
+
+export const getCartProductFromLocalStorage = (): CartProduct[] => {
+  // get the previous cart products
+  const previousCartProductsJSON = localStorage.getItem("cart_products");
+  let cartProducts: CartProduct[] | [] = [];
+
+  // check if the any product exist in the local storage
+  if (previousCartProductsJSON !== null) {
+    cartProducts = JSON.parse(previousCartProductsJSON);
+  }
+  return cartProducts;
 };
