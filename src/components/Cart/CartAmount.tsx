@@ -10,7 +10,6 @@ const CartAmount = () => {
         <h1 className="text-2xl md:text-[1.3rem] font-semibold mb-2">
           Subtotal{" "}
           <span className="hidden md:inline-block">
-            {" "}
             ({cartProductCount} items) :
           </span>{" "}
           $959.68

@@ -26,8 +26,9 @@ const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
   // useReducer to controll hambergurMenu
   const [menuState, menuDispatch] = useReducer(menuReducer, initialMenuState);
 
-  // useReducer to controll Cart items
+  // product amount in cart & cart product fetching states
   const [cartProductCount, setCartProductCount] = useState(0);
+  const [cartModified, setCartModified] = useState(false);
 
   // user information state & loading state
   const [user, setUser] = useState<User>(initialUserState);
@@ -62,8 +63,9 @@ const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
     setLoading,
     cartProductCount,
     setCartProductCount,
+    cartModified,
+    setCartModified,
   };
-
   return (
     <SHOP_CONTEXT.Provider value={shopContextData}>
       {children}

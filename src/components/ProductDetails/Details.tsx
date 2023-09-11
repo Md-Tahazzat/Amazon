@@ -6,7 +6,6 @@ import ProductPrice from "./ProductPrice";
 import TitleAndRatings from "./TitleAndRatings";
 
 const Details = ({ product }: { product: ProductType }) => {
-  console.log(product);
   return (
     <div className="w-full lg:w-7/12 flex flex-col-reverse lg:gap-3 lg:flex-row items-start">
       <div className="w-full lg:w-[72%]">

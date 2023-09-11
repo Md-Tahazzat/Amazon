@@ -1,12 +1,15 @@
 import { useState } from "react";
+import useCartProductModifier from "../../hooks/useCartProductModifier";
 import { useShopContext } from "../../provider/ContextProvider";
 import { ProductType } from "../../tsInterfaces&types/Products";
 import { CartProduct } from "../../tsInterfaces&types/cartProduct";
-import { addCartProductToLocalStorage } from "../../utilitesFn/AddToCart";
 import DeliveryDate from "../Products/DeliveryDate";
 import ProductPrice from "./ProductPrice";
 
 const AddToCart = ({ product }: { product: ProductType }) => {
+  const { addCartProductToLocalStorage, addCartProductToMongoDB } =
+    useCartProductModifier();
+  const { user } = useShopContext();
   const { setCartProductCount, cartProductCount } = useShopContext();
 
   // get the dollars & cents
@@ -31,7 +34,11 @@ const AddToCart = ({ product }: { product: ProductType }) => {
       image: images[0],
     };
 
-    addCartProductToLocalStorage(newAddedProduct);
+    if (user.email) {
+      const result = addCartProductToMongoDB(newAddedProduct, user.email);
+    } else {
+      addCartProductToLocalStorage(newAddedProduct);
+    }
     setCartProductCount(cartProductCount + quantity);
   };
 

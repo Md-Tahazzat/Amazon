@@ -1,31 +1,50 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import useCartProductModifier from "../../hooks/useCartProductModifier";
 import { useShopContext } from "../../provider/ContextProvider";
-import { CartProduct } from "../../tsInterfaces&types/cartProduct";
 
 const Cart = () => {
-  const { cartProductCount, setCartProductCount } = useShopContext();
+  const {
+    cartProductCount,
+    setCartProductCount,
+    user,
+    setCartModified,
+    cartModified,
+  } = useShopContext();
+
+  const {
+    getCartProductsFromLocalStorage,
+    getCartProductsFromMongoDB,
+    getTotalProductsAmount,
+  } = useCartProductModifier();
+
   useEffect(() => {
-    // get the previous cart products
-    const previousCartProductsJSON = localStorage.getItem("cart_products");
-    let cartProducts: CartProduct[] | [] = [];
+    // get products from database.
+    if (user.email) {
+      const cartProductsFromMongoDB = getCartProductsFromMongoDB(user.email);
 
-    // check if the any product exist in the local storage
-    if (previousCartProductsJSON !== null) {
-      cartProducts = JSON.parse(previousCartProductsJSON);
+      // check if any product exist on cartProducts
+      if (cartProductsFromMongoDB?.length > 0) {
+        const totalProductCount = getTotalProductsAmount(
+          cartProductsFromMongoDB
+        );
+        setCartProductCount(totalProductCount);
+        setCartModified(false);
+      }
+    } else {
+      // get products from LocalStorage.
+      const cartProductsFromLocalStorage = getCartProductsFromLocalStorage();
+      if (cartProductsFromLocalStorage?.length > 0) {
+        const totalProductCount = getTotalProductsAmount(
+          cartProductsFromLocalStorage
+        );
+        setCartProductCount(totalProductCount);
+        setCartModified(false);
+      } else {
+        setCartProductCount(0);
+      }
     }
-
-    // get the total product quantity
-    let totalProductCount: number = 0;
-    if (cartProducts.length > 0) {
-      cartProducts.forEach(
-        (product) => (totalProductCount += product.quantity)
-      );
-
-      setCartProductCount(totalProductCount);
-    }
-  }, []);
-
+  }, [cartModified === true]);
   return (
     <Link
       to="/cart"

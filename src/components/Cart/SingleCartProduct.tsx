@@ -1,8 +1,16 @@
 import { useState } from "react";
+import useCartProductModifier from "../../hooks/useCartProductModifier";
+import { useShopContext } from "../../provider/ContextProvider";
 import { CartProduct } from "../../tsInterfaces&types/cartProduct";
-import { updateCartProductOfLocalStorage } from "../../utilitesFn/AddToCart";
 
 const SingleCartProduct = ({ product }: { product: CartProduct }) => {
+  const { setCartModified, user } = useShopContext();
+  const {
+    updateCartProductToMongoDB,
+    updateCartProductOfLocalStorage,
+    deleteCartProductFromMongoDB,
+    deleteCartProductFromLocalStorage,
+  } = useCartProductModifier();
   const [inputValue, setInputValue] = useState(product.quantity.toString());
 
   //   product quantity input function handler
@@ -14,7 +22,25 @@ const SingleCartProduct = ({ product }: { product: CartProduct }) => {
 
   //  product quantity update function
   const handleUpdateQuantity = (id: string) => {
-    updateCartProductOfLocalStorage(id, parseInt(inputValue));
+    if (user?.email) {
+      updateCartProductToMongoDB(user.email, id, parseInt(inputValue));
+    } else {
+      updateCartProductOfLocalStorage(id, parseInt(inputValue));
+    }
+    setCartModified(true);
+    alert("product updated");
+  };
+
+  //  delete product from Database.
+  const handleDelete = (id: string) => {
+    setCartModified(true);
+    alert("product updated");
+    if (user?.email) {
+      deleteCartProductFromMongoDB(user.email, id);
+    } else {
+      deleteCartProductFromLocalStorage(id);
+    }
+    setCartModified(true);
     alert("product updated");
   };
   return (
@@ -60,7 +86,10 @@ const SingleCartProduct = ({ product }: { product: CartProduct }) => {
           >
             Update
           </button>
-          <button className="hover:underline text-blue-500 mx-2 px-4 border-r border-l">
+          <button
+            onClick={() => handleDelete(product._id)}
+            className="hover:underline text-blue-500 mx-2 px-4 border-r border-l"
+          >
             Delete
           </button>
         </div>

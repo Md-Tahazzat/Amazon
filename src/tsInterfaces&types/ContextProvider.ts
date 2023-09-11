@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 // interface of react children for ContextProvider,
 export interface ContextProviderProps {
   children: ReactNode;
@@ -33,8 +33,10 @@ export interface ShopContextData {
   setUser: React.Dispatch<User>;
   loading: boolean;
   setLoading: React.Dispatch<boolean>;
-  cart: string[];
-  cartDispatch: React.Dispatch<CartAction>;
+  cartProductCount: number;
+  setCartProductCount: React.Dispatch<number>;
+  cartModified: Boolean;
+  setCartModified: React.Dispatch<boolean>;
 }
 
 // interface for action parameter of cartReducer function
