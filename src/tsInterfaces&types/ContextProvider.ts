@@ -9,6 +9,7 @@ export interface User {
   displayName: string | null;
   email: string | null;
   photoURL: string | null;
+  role: string | null;
 }
 
 //interface for menuState value of useReducer hook to control hambergerMenu.
@@ -43,4 +44,11 @@ export interface ShopContextData {
 export interface CartAction {
   actionType: "ADD" | "DELETE" | "RESET";
   _id: string;
+}
+
+// interfaces for the response of saving user in database
+export interface SaveUserResult {
+  email: string;
+  role: string;
+  token: string;
 }

@@ -15,10 +15,10 @@ const Products = () => {
     isLoading,
     isError,
   } = useQuery([category, 2], async () => {
-    const res: ProductType[] = await instance.get(
+    const res: { data: ProductType[] } = await instance.get(
       `/products?category=${category}`
     );
-    return res;
+    return res.data;
   });
   console.log(products);
   if (isLoading) return <Loading className="w-full h-[70vh]" />;

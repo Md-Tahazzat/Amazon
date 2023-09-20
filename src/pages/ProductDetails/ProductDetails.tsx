@@ -18,8 +18,8 @@ const ProductDetails = () => {
     isLoading,
     isError,
   } = useQuery(["product", id], async () => {
-    const res: ProductType = await instance.get(`/products/${id}`);
-    return res;
+    const res: { data: ProductType } = await instance.get(`/products/${id}`);
+    return res.data;
   });
 
   if (isLoading) {

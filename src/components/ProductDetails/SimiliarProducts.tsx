@@ -14,10 +14,10 @@ const SimiliarProducts = ({
   const { data: products, isLoading } = useQuery(
     [category, subcategory],
     async () => {
-      const res: ProductType[] = await instance.get(
+      const res: { data: ProductType[] } = await instance.get(
         `products?category=${category}&sub_category=${subcategory}`
       );
-      return res ? res.filter((product) => product._id !== id) : [];
+      return res ? res.data.filter((product) => product._id !== id) : [];
     }
   );
 

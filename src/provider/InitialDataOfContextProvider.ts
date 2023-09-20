@@ -28,4 +28,6 @@ export const initialContextData: ShopContextData = {
   setLoading: () => {},
   cartProductCount: 0,
   setCartProductCount: () => {},
+  cartModified: false,
+  setCartModified: () => {},
 };

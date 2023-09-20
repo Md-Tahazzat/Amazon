@@ -5,7 +5,7 @@ import amazon_lottie_logo from "../../assets/lottieAnimation/amazon_logo.json";
 const LogoBlack = () => {
   return (
     <Link
-      className=" w-36 mb-4 block md:w-44 mx-auto -mt-5"
+      className=" w-36 mb-4 md:w-44 mx-auto -mt-5"
       title="Click for Home Page"
       to="/"
     >

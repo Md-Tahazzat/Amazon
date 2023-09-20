@@ -3,27 +3,29 @@ import { FaAngleRight, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import auth from "../../firebase/firebase.config";
 import { useShopContext } from "../../provider/ContextProvider";
+import ProfileImage from "../ProfileImage";
 const Profile = () => {
-  const { user, setUser } = useShopContext();
+  const { user, loading, setUser } = useShopContext();
+  console.log(user, loading);
   const handleSignOut = (): void => {
     // set user details null
     setUser({
       email: null,
       displayName: null,
       photoURL: null,
+      role: null,
     });
     // signOut user
     signOut(auth);
+    localStorage.removeItem("access-token");
   };
+
   return (
     <>
-      {user?.email ? (
-        <div>
-          <button className="text-white mt-3 pr-3" onClick={handleSignOut}>
-            Sign out
-          </button>
-          <img src="" />
-        </div>
+      {loading ? (
+        <p className="text-red-500 text-2xl">loading</p>
+      ) : user?.email ? (
+        <ProfileImage className="hidden lg:flex" />
       ) : (
         <Link to="/sign-in" className="text-white hover-border md:py-1 lg:mt-1">
           {/* for medium and large device device profile */}

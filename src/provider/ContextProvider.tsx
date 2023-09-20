@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { onAuthStateChanged } from "firebase/auth";
 import {
   createContext,
@@ -7,8 +8,10 @@ import {
   useState,
 } from "react";
 import auth from "../firebase/firebase.config";
+import instance from "../hooks/useAxiosInstance";
 import {
   ContextProviderProps,
+  SaveUserResult,
   ShopContextData,
   User,
 } from "../tsInterfaces&types/ContextProvider";
@@ -39,12 +42,22 @@ const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       // TODO: save user to database
       if (currentUser?.email) {
-        const user: User = {
-          displayName: currentUser.displayName,
-          email: currentUser.email,
-          photoURL: currentUser.photoURL,
-        };
-        setUser(user);
+        console.log(currentUser);
+        instance
+          .post("/user", {
+            email: currentUser.email,
+            role: "buyer",
+          })
+          .then((result: AxiosResponse<SaveUserResult, SaveUserResult>) => {
+            localStorage.setItem("access-token", result.data.token);
+            const user: User = {
+              displayName: currentUser.displayName,
+              email: currentUser.email,
+              photoURL: currentUser.photoURL,
+              role: result.data.role,
+            };
+            setUser(user);
+          });
       }
     });
     setLoading(false);

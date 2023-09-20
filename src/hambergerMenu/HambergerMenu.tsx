@@ -1,13 +1,14 @@
 import { FaAngleRight } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { useQuery } from "react-query";
+import ProfileImage from "../components/ProfileImage";
 import instance from "../hooks/useAxiosInstance";
 import { useShopContext } from "../provider/ContextProvider";
 import { Category } from "../tsInterfaces&types/HambergerMenu";
 import SubMenu from "./SubMenu";
 
 const HambergerMenu = () => {
-  const { menuState, menuDispatch } = useShopContext();
+  const { user, menuState, menuDispatch } = useShopContext();
 
   // hambergerMenu handler function.
   const handleMenuToggle = (
@@ -22,8 +23,8 @@ const HambergerMenu = () => {
   };
 
   const { data } = useQuery("categories", async () => {
-    const response: Category[] = await instance.get("/categories");
-    return response;
+    const response: { data: Category[] } = await instance.get("/categories");
+    return response.data;
   });
 
   const navLinks: Category[] = data || [];
@@ -39,10 +40,19 @@ const HambergerMenu = () => {
       <div className="drawer-side -left-[1px] overflow-hidden">
         <label htmlFor="menu-drawer" className="drawer-overlay"></label>
         <div className="-translate-x-full  w-9/12 md:w-3/6 h-full bg-white relative lg:w-96 text-base-content">
+          {user.email && user.photoURL ? (
+            <div className="py-0.5 pl-10 text-white font-semibold flex items-center gap-5 bg-[#232F3E] text-2xl">
+              <ProfileImage className="flex" />
+              <p>Welcome</p>
+            </div>
+          ) : (
+            <p className="py-2.5 pl-10 text-white font-semibold flex items-center gap-2 bg-[#232F3E] text-2xl">
+              <img src="https://i.ibb.co/nBTRKYv/User-Profile.png" alt="" />{" "}
+              Hello, sign in
+            </p>
+          )}
           {/* Navlink list here */}
-          <p className="py-2.5 pl-10 text-white font-semibold bg-[#232F3E] block text-2xl">
-            Hello, sign in
-          </p>
+
           <p className="pl-10 text-lg font-bold py-2.5 border-b border-b-slate-200">
             Shop By Categories
           </p>
