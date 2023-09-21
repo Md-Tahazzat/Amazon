@@ -40,6 +40,20 @@ const router = createBrowserRouter([
         <UserProfile />
       </PrivateRouteWrapper>
     ),
+    children: [
+      {
+        path: "/user-profile/update",
+        element: <p>Have to make the update profile page</p>,
+      },
+      {
+        path: "/user-profile/order-history",
+        element: <p>Have to make the order history page</p>,
+      },
+      {
+        path: "/user-profile/payment-history",
+        element: <p>Have to make the payment history page</p>,
+      },
+    ],
   },
   {
     path: "/sign-in",

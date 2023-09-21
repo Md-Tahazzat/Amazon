@@ -31,7 +31,7 @@ const SubMenu = ({ categoryHref, subcategories, index }: SubMenuPropsType) => {
   return (
     <ul
       data-index="1"
-      className={`duration-300 bg-white absolute w-full h-full top-[51px] left-0 ${
+      className={`sidebar-ul duration-300 bg-slate-200 absolute w-full h-full top-[51px] left-0 ${
         menuState.subMenuIndex === index && menuState.isSubMenuOpen
           ? "translate-x-0"
           : "-translate-x-full"
@@ -49,7 +49,7 @@ const SubMenu = ({ categoryHref, subcategories, index }: SubMenuPropsType) => {
       {subcategories.map((item, index) => {
         return (
           <li
-            className="pl-7 block font-medium duration-150 hover:bg-slate-200"
+            className="pl-7 block font-medium duration-150 hover:bg-slate-300"
             onClick={(event) => handleMenuToggle(event, "MENU", "CLOSE")}
             key={index}
           >

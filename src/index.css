@@ -84,3 +84,23 @@
 .react-magnify-small-image {
   @apply h-4/6 lg:max-h-full lg:max-w-full;
 }
+
+/* user profile layout style starts from here... */
+.sidebar-ul {
+  box-shadow: inset -14px -0px 20px rgb(189, 189, 189);
+}
+
+.toggle-btn {
+  box-shadow: inset 0px 2px 2.5px 0px rgb(34, 33, 33);
+  @apply flex items-center gap-1 border relative
+    border-slate-500 text-sm bg-slate-400 py-0.5  my-3 px-0.5 rounded-3xl;
+}
+
+.btn-toggler {
+  box-shadow: 0px 1px 4px rgb(34, 33, 33), 0px -1px 4px rgb(255, 253, 253);
+  @apply absolute w-[22.5px] h-[22.5px] top-[0.5px] left-[0.5px] duration-200  rounded-full bg-slate-50;
+}
+
+.user-prifile-links {
+  @apply text-lg px-2 py-0.5  my-2 rounded-l-md hover:bg-slate-500 hover:text-slate-50 duration-150;
+}

@@ -39,7 +39,7 @@ const HambergerMenu = () => {
       />
       <div className="drawer-side -left-[1px] overflow-hidden">
         <label htmlFor="menu-drawer" className="drawer-overlay"></label>
-        <div className="-translate-x-full  w-9/12 md:w-3/6 h-full bg-white relative lg:w-96 text-base-content">
+        <div className="sidebar-ul -translate-x-full  w-9/12 md:w-3/6 h-full bg-slate-200 relative lg:w-96 text-base-content">
           {user.email && user.photoURL ? (
             <div className="py-0.5 pl-10 text-white font-semibold flex items-center gap-5 bg-[#232F3E] text-2xl">
               <ProfileImage className="flex" />
@@ -53,7 +53,7 @@ const HambergerMenu = () => {
           )}
           {/* Navlink list here */}
 
-          <p className="pl-10 text-lg font-bold py-2.5 border-b border-b-slate-200">
+          <p className="pl-10 text-lg font-bold py-2.5 border-b border-b-slate-300">
             Shop By Categories
           </p>
 
@@ -67,9 +67,9 @@ const HambergerMenu = () => {
                       handleMenuToggle(event, "SUBMENU", "OPEN", index + 1)
                     }
                     key={index}
-                    className="pl-10 block hover:bg-slate-200 font-medium duration-150 py-2.5"
+                    className="pl-10 block hover:bg-slate-300 font-medium duration-150 py-2.5"
                   >
-                    <label className="flex font-thin items-center justify-between pr-5">
+                    <label className="flex font-thin items-center justify-between pr-7">
                       <span className="font-medium text-base">{link.name}</span>{" "}
                       <FaAngleRight />
                     </label>
