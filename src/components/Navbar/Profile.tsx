@@ -3,7 +3,7 @@ import { FaAngleRight, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import auth from "../../firebase/firebase.config";
 import { useShopContext } from "../../provider/ContextProvider";
-import ProfileImage from "../ProfileImage";
+import ProfileImage from "./ProfileImage";
 const Profile = () => {
   const { user, loading, setUser } = useShopContext();
   console.log(user, loading);

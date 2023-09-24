@@ -8,6 +8,7 @@ import Products from "../pages/Products/Products";
 import SignIn from "../pages/UserAccount/SignIn";
 import SignUp from "../pages/UserAccount/SignUp";
 import PrivateRouteWrapper from "../privateRouteWrapper/PrivateRouteWrapper";
+import { userProfileRoute } from "./UserProfileRoute";
 
 const router = createBrowserRouter([
   {
@@ -40,20 +41,7 @@ const router = createBrowserRouter([
         <UserProfile />
       </PrivateRouteWrapper>
     ),
-    children: [
-      {
-        path: "/user-profile/update",
-        element: <p>Have to make the update profile page</p>,
-      },
-      {
-        path: "/user-profile/order-history",
-        element: <p>Have to make the order history page</p>,
-      },
-      {
-        path: "/user-profile/payment-history",
-        element: <p>Have to make the payment history page</p>,
-      },
-    ],
+    children: userProfileRoute,
   },
   {
     path: "/sign-in",
@@ -62,10 +50,6 @@ const router = createBrowserRouter([
   {
     path: "/sign-up",
     element: <SignUp />,
-  },
-  {
-    path: "/profile",
-    element: <UserProfile />,
   },
 ]);
 export default router;

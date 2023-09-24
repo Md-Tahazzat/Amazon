@@ -13,9 +13,10 @@ export const initialMenuState: MenuState = {
 
 // intial user of useState
 export const initialUserState: User = {
-  displayName: "",
-  email: "",
-  photoURL: "",
+  displayName: null,
+  email: null,
+  photoURL: null,
+  role: null,
 };
 
 // initial data of shopContext

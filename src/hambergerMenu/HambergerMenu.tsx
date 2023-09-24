@@ -1,7 +1,7 @@
 import { FaAngleRight } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { useQuery } from "react-query";
-import ProfileImage from "../components/ProfileImage";
+import ProfileImage from "../components/Navbar/ProfileImage";
 import instance from "../hooks/useAxiosInstance";
 import { useShopContext } from "../provider/ContextProvider";
 import { Category } from "../tsInterfaces&types/HambergerMenu";

@@ -1,11 +1,18 @@
 type ToggleButtonPropsType = {
   isChecked: boolean;
-  setIsChecked: React.Dispatch<boolean>;
+  handleChangeRole: (role: "seller" | "buyer") => void;
 };
 const ToggleButton = (props: ToggleButtonPropsType) => {
-  const { isChecked, setIsChecked } = props;
+  const { isChecked, handleChangeRole } = props;
   return (
-    <button onClick={() => setIsChecked(!isChecked)} className="toggle-btn">
+    <button
+      onClick={() =>
+        isChecked === false
+          ? handleChangeRole("seller")
+          : handleChangeRole("buyer")
+      }
+      className="toggle-btn"
+    >
       <span className="text-white font-semibold">Yes</span>{" "}
       <span className="text-white font-semibold">Yes</span>
       <span

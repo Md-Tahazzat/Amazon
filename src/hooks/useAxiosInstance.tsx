@@ -8,6 +8,8 @@ const instance: AxiosInstance = axios.create({
 instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     // TODO: have to add token to headers.
+    const token = localStorage.getItem("access-token");
+    config.headers["Authorization"] = `Bearer ${token}`;
     return config;
   },
   (error) => {

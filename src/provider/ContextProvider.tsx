@@ -42,7 +42,6 @@ const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       // TODO: save user to database
       if (currentUser?.email) {
-        console.log(currentUser);
         instance
           .post("/user", {
             email: currentUser.email,

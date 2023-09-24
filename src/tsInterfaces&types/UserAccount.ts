@@ -44,3 +44,10 @@ export interface SignInFormAction {
   showPassword?: boolean;
   loading?: boolean;
 }
+
+// interface for usrFeatures response from databse.
+export interface UserFeaturesResponse {
+  _id: string;
+  role: string;
+  features: [{ label: string; link: string }];
+}
