@@ -15,8 +15,6 @@ const PrivateRouteWrapper: React.FC<{ children: ReactNode }> = ({
 
   // if user is not signIn then send the user to sign-in page.
   if (!user.email) {
-    console.log(loading);
-    console.log("inside user null condition");
     return <Navigate to="/sign-in" state={location.pathname} replace={true} />;
   }
 

@@ -3,6 +3,7 @@ import { FaAngleRight, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import auth from "../../firebase/firebase.config";
 import { useShopContext } from "../../provider/ContextProvider";
+import Loading from "../Loading/Loading";
 import ProfileImage from "./ProfileImage";
 const Profile = () => {
   const { user, loading, setUser } = useShopContext();
@@ -23,7 +24,7 @@ const Profile = () => {
   return (
     <>
       {loading ? (
-        <p className="text-red-500 text-2xl">loading</p>
+        <Loading className="flex" />
       ) : user?.email ? (
         <ProfileImage className="hidden lg:flex" />
       ) : (

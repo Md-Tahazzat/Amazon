@@ -39,6 +39,7 @@ const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
 
   // track authState change
   useEffect(() => {
+    setLoading(true);
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       // TODO: save user to database
       if (currentUser?.email) {

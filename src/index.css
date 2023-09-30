@@ -70,6 +70,7 @@
 #banner-swiper > div.swiper-button-prev {
   @apply ml-10 text-orange-500 top-32;
 }
+
 #banner-swiper > div.swiper-button-next {
   @apply mr-10 text-orange-500 top-32;
 }
@@ -91,7 +92,7 @@
 }
 
 .toggle-btn {
-  box-shadow: inset 0px 2px 2.5px 0px rgb(34, 33, 33);
+  box-shadow: inset 0px 2px 2.5px 0px rgb(59, 59, 59);
   @apply flex items-center gap-1 border relative
     border-slate-500 text-sm bg-slate-400 py-0.5  my-3 px-0.5 rounded-3xl;
 }

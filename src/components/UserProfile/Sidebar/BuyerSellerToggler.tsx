@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import instance from "../../../hooks/useAxiosInstance";
 import { useShopContext } from "../../../provider/ContextProvider";
 import ToggleButton from "../../Button/ToggleButton";
 
 const BuyerSellerToggler = () => {
+  const navigate = useNavigate();
   const { user, setUser } = useShopContext();
-  console.log(user.role);
   const [isChecked, setIsChecked] = useState(
     user.role === "seller" ? true : false
   );
@@ -20,8 +21,6 @@ const BuyerSellerToggler = () => {
     const res = await instance.put("/user", { email: user.email, role });
 
     if (res.status !== 200) return alert("something wrong");
-
-    console.log(res);
     // update the user state
     setUser({ ...user, role: res.data.role });
     if (res.data.role === "seller") {
@@ -29,6 +28,8 @@ const BuyerSellerToggler = () => {
     } else {
       setIsChecked(false);
     }
+
+    navigate("/user-profile");
   };
   return (
     <li className="mt-10 flex border-t border-t-slate-300 items-center justify-start gap-2 px-2">
