@@ -16,18 +16,20 @@ export interface CommentType {
   product_img: [string] | undefined;
 }
 
-export type ProductDetails = Record<string, any>;
+export type ProductDetailsType = Record<string, any>;
 
 export interface ProductType {
-  _id: string;
+  _id?: string;
   title: string | undefined;
   images: string[];
   ratings_info: RatingsInfo;
   price: number;
-  product_details: ProductDetails[];
+  product_details: ProductDetailsType;
   about: string[];
   description: string;
   comments: CommentType[];
   category: string;
   sub_category: string;
+  email?: string | null;
+  status?: string;
 }

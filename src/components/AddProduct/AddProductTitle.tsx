@@ -10,7 +10,7 @@ const AddProductTitle = ({ register }: AddProductTitlePropsType) => {
       <label className="input-label">Product Title</label>
       <input
         className="input-field"
-        {...register("title")}
+        {...register("title", { required: true })}
         placeholder="Product title"
       />
     </div>

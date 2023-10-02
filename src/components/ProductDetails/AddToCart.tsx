@@ -7,6 +7,7 @@ import DeliveryDate from "../Products/DeliveryDate";
 import ProductPrice from "./ProductPrice";
 
 const AddToCart = ({ product }: { product: ProductType }) => {
+  console.log(product);
   const { addCartProductToLocalStorage, addCartProductToMongoDB } =
     useCartProductModifier();
   const { user } = useShopContext();

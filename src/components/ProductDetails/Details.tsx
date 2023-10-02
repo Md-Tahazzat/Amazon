@@ -1,7 +1,7 @@
 import { ProductType } from "../../tsInterfaces&types/Products";
 import AboutProduct from "./AboutProduct";
 import AddToCart from "./AddToCart";
-import ProductInfo from "./ProductInfo";
+import ProductDetails from "./ProductDetails";
 import ProductPrice from "./ProductPrice";
 import TitleAndRatings from "./TitleAndRatings";
 
@@ -23,7 +23,7 @@ const Details = ({ product }: { product: ProductType }) => {
         <ProductPrice className="hidden lg:block" price={product.price} />
 
         {/* product information (Brand, model etc) */}
-        <ProductInfo productInfo={product.product_details} />
+        <ProductDetails productDetails={product.product_details} />
 
         {/* about product */}
         <AboutProduct about={product.about} />

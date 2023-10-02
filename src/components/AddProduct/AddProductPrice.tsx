@@ -7,7 +7,11 @@ const AddProductPrice = ({ register }: AddProductPricePropsType) => {
   return (
     <div className="input-box mb-3">
       <label className="input-label">Price</label>
-      <input className="input-field" {...register("price")} placeholder="$" />
+      <input
+        className="input-field"
+        {...register("price", { required: true })}
+        placeholder="$"
+      />
     </div>
   );
 };

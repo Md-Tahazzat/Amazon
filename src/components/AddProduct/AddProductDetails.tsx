@@ -20,6 +20,7 @@ type AddProductDetailsPropsType = {
   >;
   removeProductDetailsInput: UseFieldArrayRemove;
 };
+
 const AddProductDetails = (props: AddProductDetailsPropsType) => {
   const {
     register,
@@ -32,12 +33,12 @@ const AddProductDetails = (props: AddProductDetailsPropsType) => {
   // product details input field remove and add handler function
   const handleAddInput = () => {
     appendProductDetailsInput({ key: "", value: "" });
-    setLastInputIndex((prev) => prev + 1);
+    setLastInputIndex(lastInputIndex + 1);
   };
 
   const handleRemoveInput = () => {
     removeProductDetailsInput(lastInputIndex);
-    setLastInputIndex((prev) => prev - 1);
+    setLastInputIndex(lastInputIndex - 1);
   };
   return (
     <div className="input-box mb-6">
@@ -49,7 +50,9 @@ const AddProductDetails = (props: AddProductDetailsPropsType) => {
               <label className="input-label">Product Key</label>
               <input
                 className="px-2 py-1 border text-sm mb-3 focus:outline-none w-full rounded-md"
-                {...register(`product_details.${index}.key`)}
+                {...register(`product_details.${index}.key`, {
+                  required: true,
+                })}
                 placeholder={
                   index === 0
                     ? "Ex: Brand"
@@ -64,8 +67,10 @@ const AddProductDetails = (props: AddProductDetailsPropsType) => {
             <div className="flex flex-col w-3/6">
               <label className="">Product Value</label>
               <input
-                className="px-2 py-1 border text-md mb-3 focus:outline-none w-full rounded-md"
-                {...register(`product_details.${index}.value`)}
+                className="px-2 py-1 border text-sm mb-3 focus:outline-none w-full rounded-md"
+                {...register(`product_details.${index}.value`, {
+                  required: true,
+                })}
                 placeholder={
                   index === 0
                     ? "Ex: Apple"
@@ -82,12 +87,14 @@ const AddProductDetails = (props: AddProductDetailsPropsType) => {
       </div>
       <div className="flex items-center justify-between mb-5">
         <button
+          type="button"
           className="py-1 px-3 bg-orange-500 hover:bg-orange-600 duration-150 text-white rounded-md"
           onClick={handleAddInput}
         >
           Add Attribute
         </button>
         <button
+          type="button"
           className="py-1 px-3 bg-orange-500 hover:bg-orange-600 duration-150 text-white rounded-md"
           onClick={handleRemoveInput}
         >

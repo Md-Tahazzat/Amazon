@@ -12,7 +12,6 @@ const ProductImages = ({ images }: { images: string[] }) => {
       setlargeImage(src);
     }
   };
-  console.log(largeImage);
   return (
     <div className="flex lg:sticky lg:top-4 my-4 lg:my-0 w-full lg:w-[37%] justify-center gap-2">
       {/* side images */}

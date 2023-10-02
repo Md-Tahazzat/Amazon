@@ -1,10 +1,9 @@
 import { FaAngleRight } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
-import { useQuery } from "react-query";
 import ProfileImage from "../components/Navbar/ProfileImage";
-import instance from "../hooks/useAxiosInstance";
 import { useShopContext } from "../provider/ContextProvider";
 import { Category } from "../tsInterfaces&types/HambergerMenu";
+import { getCategories } from "../utilitesFn/GetCategories";
 import SubMenu from "./SubMenu";
 
 const HambergerMenu = () => {
@@ -22,12 +21,7 @@ const HambergerMenu = () => {
     menuDispatch({ target, actionType, subMenuIndex });
   };
 
-  const { data } = useQuery("categories", async () => {
-    const response: { data: Category[] } = await instance.get("/categories");
-    return response.data;
-  });
-
-  const navLinks: Category[] = data || [];
+  const navLinks: Category[] = getCategories();
   return (
     <div className="drawer z-50">
       <input

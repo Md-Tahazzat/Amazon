@@ -1,7 +1,12 @@
-import { ProductDetails } from "../../tsInterfaces&types/Products";
+import { ProductDetailsType } from "../../tsInterfaces&types/Products";
 
-const ProductInfo = ({ productInfo }: { productInfo: ProductDetails }) => {
-  const keys = Object.keys(productInfo);
+const ProductDetails = ({
+  productDetails,
+}: {
+  productDetails: ProductDetailsType;
+}) => {
+  console.log(productDetails);
+  const keys = Object.keys(productDetails);
   return (
     <div className="mb-1 pb-1 w-full flex items-start gap-3 border-b-2 ">
       <ul>
@@ -10,7 +15,7 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductDetails }) => {
             return (
               <li className="flex my-2 leading-4" key={index}>
                 <span className="font-semibold w-3/6">{key}</span>{" "}
-                <span className="w-3/6">{productInfo[key]}</span>
+                <span className="w-3/6">{productDetails[key]}</span>
               </li>
             );
           })}
@@ -19,4 +24,4 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductDetails }) => {
   );
 };
 
-export default ProductInfo;
+export default ProductDetails;

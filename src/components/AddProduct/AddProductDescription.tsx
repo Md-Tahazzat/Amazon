@@ -12,7 +12,7 @@ const AddProductDescription = ({
       <textarea
         rows={4}
         className="px-2 resize-none py-1 border focus:outline-none w-full rounded-md"
-        {...register(`description`)}
+        {...register(`description`, { required: true })}
         placeholder="Enter a description about product"
       ></textarea>
     </div>
